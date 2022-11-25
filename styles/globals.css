@@ -1,3 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://v1.fontapi.ir/css/Vazir");
+
 html,
 body {
   padding: 0;
@@ -15,12 +21,29 @@ a {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+.nav-bg {
+  /* From https://css.glass */
+  /* From https://css.glass */
+  background: rgba(155, 155, 155, 0.37);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12.9px);
+  -webkit-backdrop-filter: blur(12.9px);
+}
+
+.dropdown-link {
+  @apply flex p-2 text-[black] hover:bg-gray-200 text-right justify-end rounded;
+}
+
+div,
+p,
+span,
+ul,
+li,
+small,
+a,
+section,
+table,
+tr,
+th {
+  font-family: Vazir, sans-serif !important;
 }
