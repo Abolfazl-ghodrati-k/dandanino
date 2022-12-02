@@ -1,8 +1,12 @@
 import React from 'react'
 import Layout from '../../components/Layout'
 
-export default function Login() {
+function index() {
   return (
-    <Layout>Login</Layout>
+    <Layout>
+        shopping
+    </Layout>
   )
 }
+
+export default index

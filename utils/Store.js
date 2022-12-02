@@ -3,7 +3,8 @@ import { createContext, useReducer } from "react";
 export const Store = createContext();
 
 const initialState = {
-  cart: { cartItems: [] },
+  cart: { cartItems: []},
+  user: ''
 };
 
 function reducer(state, action) {
@@ -19,6 +20,16 @@ function reducer(state, action) {
           )
         : [...state.cart.cartItems, newItem];
       return { ...state, cart: { ...state.cart, cartItems } };
+    }
+    case "CART_REMOVE_ITEM": {
+      const cartItems = state.cart.cartItems.filter(
+        (item) => item.slug !== action.payload.slug
+      );
+      return { ...state, cart: { ...state.cart, cartItems } };
+    }
+    case "ADD_USERNAME": {
+      const username = action.payload;
+      return {...state, user: username}
     }
     default:
       return state;

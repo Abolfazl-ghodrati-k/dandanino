@@ -8,13 +8,17 @@ import { Menu } from "@headlessui/react";
 import DropdownLink from "./DropdownLink";
 import { Store } from "../utils/Store";
 import { products } from "../utils/data";
+import { useRouter } from "next/router";
 
 export default function Nav() {
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
+
+  const router = useRouter()
+  console.log(router.pathname)
   
   return (
-    <div className="flex px-[2rem]  sm:px-[5rem] flex-row-reverse justify-between items-center w-full mx-auto p-2">
+    <div className="flex px-[2rem]  sm:px-[5rem]  justify-between items-center w-full mx-auto p-2">
       <Menu as="div" className="relative inline-block sm:hidden text-right">
         <Menu.Button className="mt-1">
           <HiOutlineMenu size={30} />
@@ -31,7 +35,7 @@ export default function Nav() {
             </DropdownLink>
           </Menu.Item>
           <Menu.Item>
-            <DropdownLink className="dropdown-link" href="/login">
+            <DropdownLink className="dropdown-link" href="/profile" redirect={router.pathname}>
               حساب کاربری
             </DropdownLink>
           </Menu.Item>
@@ -52,12 +56,12 @@ export default function Nav() {
           </li>
         </ul>
       </div>
-      <div className="flex flex-row-reverse justify-between items-center">
+      <div className="flex  justify-between items-center">
         <span className=" hidden sm:flex">
-          <Link href={"/login"}>
+          <Link href={{pathname:"/profile",query:{redirect: router.pathname}}}>
             <span className="flex mt-1 flex-col items-center ml-2 hover:text-[#167495] text-[black] group transition-all duration-5000 cursor-pointer">
               <p className="mb-1 text-[.6rem] ms:text-[.7rem]">حساب کاربری</p>
-              <div className="mx-auto h-[1px] bg-[white] w-[0] group-hover:w-full transition-width duration-500"></div>
+              <div className="mx-auto h-[1px] bg-[black] w-[0] group-hover:w-full transition-width duration-500"></div>
             </span>
           </Link>
         </span>

@@ -44,6 +44,14 @@ a,
 section,
 table,
 tr,
-th {
+th,
+button,
+body,
+label
+h1,h2,h3,h4 {
   font-family: Vazir, sans-serif !important;
+}
+
+p,div,span {
+  direction: rtl;
 }

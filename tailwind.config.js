@@ -6,17 +6,18 @@ module.exports = {
   ],
   theme: {
     screens: {
-      ms:"514px",
-      sm:"696px",
-      md:"800px",
-      ml:"1020px",
-      lg:"1100px"
+      skh: "448px",
+      ms: "514px",
+      sm: "696px",
+      md: "800px",
+      ml: "1020px",
+      lg: "1100px",
     },
     extend: {
-      backgroundImage:{
-        hero: "url('/Images/europe.svg')"
-      }
+      backgroundImage: {
+        hero: "url('/Images/europe.svg')",
+      },
     },
   },
   plugins: [],
-}
+};
