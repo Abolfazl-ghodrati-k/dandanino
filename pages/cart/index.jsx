@@ -7,6 +7,7 @@ import { CgShoppingBag } from "react-icons/cg";
 import PersianNumber from "react-persian-currency/lib/PersianNumber";
 import useDividedPrice from "../../hooks/useDividedPrice";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 
 export default function Cart() {
   const [Total, setTotal] = useState(1);
@@ -16,7 +17,7 @@ export default function Cart() {
     cart: { cartItems },
   } = state;
 
-  const session = false;
+  const { data: session } = useSession();
 
   const router = useRouter();
 
@@ -33,8 +34,7 @@ export default function Cart() {
   }, [FinalPrice, cartItems]);
 
   const Shopping = () => {
-    // console.log(FinalPrice);
-    if (session) {
+    if (session?.user) {
       router.push({ pathname: "/shopping" });
     } else {
       router.push({

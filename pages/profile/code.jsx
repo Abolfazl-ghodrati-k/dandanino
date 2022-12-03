@@ -25,7 +25,7 @@ function code() {
   }
 
   useEffect(() => {
-    console.log(session)
+    // console.log(session)
     if (session?.user) {
       route.push({ pathname: route.query.redirect || "/" });
     } else {

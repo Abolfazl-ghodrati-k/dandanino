@@ -1,9 +1,10 @@
 import Image from "next/image";
 import logo from "../../public/Images/Logos/logo.png";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BiArrowBack } from "react-icons/bi";
 import { useRouter } from "next/router";
 import { Store } from "../../utils/Store";
+import { useSession } from "next-auth/react";
 
 export default function Login() {
   const [error, seterror] = useState(false);
@@ -13,8 +14,15 @@ export default function Login() {
 
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
+  const { data: session } = useSession();
 
   const pattern = /^[0-9]{11}$/;
+
+  useEffect(() => {
+    if(session?.user){
+      router.push('/userinfo');
+    }
+  },[]);
 
   const SigningUp = () => {
     dispatch({ type: "ADD_USERNAME", payload: username });

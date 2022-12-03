@@ -29,7 +29,7 @@ function index() {
         className="max-w-[95vw] mx-auto flex flex-col"
       >
         {/* titlle */}
-        <div className="flex fixed top-[5.3rem] bg-[#ecf0f3] left-[2.5vw] right-[2.5vw] justify-between items-center border border-r-0 border-l-0 border-t-0 border-b-1 border-solid border-[gray] pb-3">
+        <div className="flex fixed top-[3.3rem] pt-[2rem] bg-[#ecf0f3] left-[2.5vw] right-[2.5vw] justify-between items-center border border-r-0 border-l-0 border-t-0 border-b-1 border-solid border-[gray] pb-3">
           <div className="flex flex-col items-start justify-center">
             <p className="text-[1.4rem] font-semibold">اطلاعات شخصی</p>
             <p className="text-[0.9rem] text-[gray] font-normal">
