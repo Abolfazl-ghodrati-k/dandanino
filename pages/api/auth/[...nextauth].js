@@ -2,8 +2,8 @@ import { compare } from "bcryptjs";
 import bcryptjs from "bcryptjs"
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
-import connectMongo from "../../../database/conn";
 import Users from "../../../model/User";
+import db from "../../../database/db";
 
 export default NextAuth({
   session: {
@@ -25,15 +25,16 @@ export default NextAuth({
     CredentialsProvider({
       name: "credentials",
       async authorize(credentials, req) {
-        connectMongo().catch((error) => {
-          error: "Connection Failed..!";
-        });
+        
+        await db.connect();
 
         //check user existance
         const user = await Users.findOne({ username: credentials.username });
+        await db.disconnect();
         if (!user) {
           throw new Error("No user Found with Email Please Sign Up...!");
         }
+
         if(user) {
           return {
             _id: user._id,

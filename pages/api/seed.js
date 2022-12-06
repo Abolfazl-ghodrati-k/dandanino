@@ -1,15 +1,18 @@
-import connectMongo from '../../database/conn'
+import db from '../../database/db'
 import Product from '../../model/Product'
 import User from '../../model/User'
 import {users,products} from '../../utils/data'
 
 const handler = async (req, res) => {
-    connectMongo()
+    await db.connect();
+
     await User.deleteMany();
     await User.insertMany(users);
     await Product.deleteMany();
     await Product.insertMany(products);
-    return res.send({message: users})
+    await db.disconnect();
+
+    return res.send({message: "Seeded successfully..."})
 }
 
 export default handler

@@ -1,6 +1,7 @@
-import connectMongo from "../../../database/conn";
+
 import Users from "../../../model/User";
 import Cors from "cors";
+import db from "../../../database/db";
 
 const cors = Cors({
   methods: ["POST", "GET", "HEAD"],
@@ -20,7 +21,8 @@ function runMiddleware(req, res, fn) {
 
 export default async function handler(req, res) {
   await runMiddleware(req, res, cors);
-  connectMongo().catch((err) => res.json({ error: "Connection Failed...!" }));
+  await db.connect();
+
   // only post method is accepted
   if (req.method === "POST") {
     if (!req.body) {
@@ -35,6 +37,7 @@ export default async function handler(req, res) {
     const checkexisting = await Users.findOne({ username });
     if (checkexisting) {
       return res.status(400).json({ status: 400, data: checkexisting });
+      await db.disconnect();
     }
 
     Users.create(

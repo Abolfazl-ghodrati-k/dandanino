@@ -57,12 +57,12 @@ function Hero() {
               <span>اطلاعات بیشتر</span>
             </button>
           </div>
-          <div className="flex justify-start items-center text-[.9rem] mt-6 mr-2">
+          {/* <div className="flex justify-start items-center text-[.9rem] mt-6 mr-2">
             <div className="flex items-center text-[orange]">
               <span className="mx-2">ارسال رایگان</span>
               <CiDeliveryTruck size={25} />
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="absolute left-0 top-10 w-[165px] ms:w-[300px] sm:w-[350px] md:w-[400px] ml:w-[580px]">
