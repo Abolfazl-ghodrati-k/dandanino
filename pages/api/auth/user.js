@@ -1,5 +1,5 @@
 import connectMongo from "../../../database/conn";
-import Users from "../../../model/Schema";
+import Users from "../../../model/User";
 import Cors from "cors";
 
 const cors = Cors({
@@ -12,7 +12,6 @@ function runMiddleware(req, res, fn) {
       if (result instanceof Error) {
         return reject(result);
       }
-
       return resolve(result);
     });
   });
@@ -20,23 +19,24 @@ function runMiddleware(req, res, fn) {
 
 export default async function handler(req, res) {
   await runMiddleware(req, res, cors);
-  var Connection = true
-  connectMongo().catch((err) => {Connection = false});
-  if(!Connection) {
-    return res.json({ error: "Connection Failed...!" })
+  var Connection = true;
+  connectMongo().catch((err) => {
+    Connection = false;
+  });
+  if (!Connection) {
+    return res.json({ error: "Connection Failed...!" });
   }
   if (req.method == "POST") {
     if (!req.body) {
       return res.status(404).json({ error: "Dont have form data" });
     }
 
-    const  username  = req.body;
-
+    const {username} = req.body;
     const user = await Users.findOne({ username });
     if (user) {
-      return res.status(400).json({ status: 400, user: user });
+      return res.status(200).json({ status: 200, user: user });
     } else {
-      return res.status(404).json({status:404, message: "User not found" });
+      return res.status(200).json({ status: 200, message: "User not found", user: username });
     }
   }
   res.status(500).json({ message: "HTTP method not valid" });

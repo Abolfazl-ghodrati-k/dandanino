@@ -8,7 +8,8 @@ import { Store } from "../../utils/Store";
 export default function Card({ cart, lastItem, firstItem }) {
   const { state, dispatch } = useContext(Store);
 
-  const FinalString = useDividedPrice(cart.quantity * cart.p);
+  const FinalString = useDividedPrice(cart.quantity * cart.price);
+  const unitPrice = useDividedPrice(cart.price)
 
   const removeItemHandler = (item) => {
     dispatch({ type: "CART_REMOVE_ITEM", payload: item });
@@ -69,7 +70,7 @@ export default function Card({ cart, lastItem, firstItem }) {
         <div className="flex h-[190px] pt-3 text-right flex-col items-start justify-start mt-3">
           <p className="text-[black] text-[.9rem]">{cart.name}</p>
           <div className="text-[.8rem] text-[gray] my-1">
-            <PersianNumber>{cart.price}</PersianNumber> تومان
+            <PersianNumber>{unitPrice}</PersianNumber> تومان
           </div>
           <p className="text-[.8rem] text-[gray]">{cart.description}</p>
           <p className="text-[.8rem] text-[black] mt-[3.5rem] md:mt-[4.3rem] bg-slate-100 p-2 rounded">

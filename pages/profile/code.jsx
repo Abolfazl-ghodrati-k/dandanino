@@ -44,7 +44,7 @@ function code() {
       body: JSON.stringify({ username: state.user }),
     };
     var user;
-    await fetch("http://localhost:3000/api/auth/signup", options)
+    await fetch(process.env.BASE_URL + "/api/auth/signup", options)
       .then((res) => res.json())
       .then((data) => {
         user = data;
@@ -58,23 +58,24 @@ function code() {
     console.log(JSON.stringify(state.user));
     if (Code == trueCode) {
       // console.log(first)
-      setloading(loading => loading = true)
+      setloading((loading) => (loading = true));
       const user = await SignUP();
-      // console.log(user);
+      console.log(user);
+      setloading((loading) => (loading = false));
       if (user) {
         try {
           const result = await signIn("credentials", {
             redirect: true,
             username: state.user,
-            callbackUrl: route.query.redirect || '/'
+            callbackUrl: route.query.redirect || "/",
           });
           // console.log(result,'result')
-          setloading(loading => loading = false)
+          setloading((loading) => (loading = false));
         } catch (error) {
           console.log(error);
         }
       }
-      // route.push({ pathname: route.query.redirect || "/" });
+      route.push({ pathname: route.query.redirect || "/" });
     }
   };
   return (

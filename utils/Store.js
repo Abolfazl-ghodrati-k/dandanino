@@ -1,10 +1,13 @@
+import Cookies from "js-cookie";
 import { createContext, useReducer } from "react";
 
 export const Store = createContext();
 
 const initialState = {
-  cart: { cartItems: []},
-  user: ''
+  cart: Cookies.get("cart")
+    ? JSON.parse(Cookies.get("cart"))
+    : { cartItems: [], shippingAddress: {},paymentMethod: '' },
+  user: "",
 };
 
 function reducer(state, action) {
@@ -27,9 +30,40 @@ function reducer(state, action) {
       );
       return { ...state, cart: { ...state.cart, cartItems } };
     }
+    case "CART_RESET": {
+      return {
+        ...state,
+        cart: {
+          cartItems: [],
+          shippingAddress: { location: {} },
+          paymentMethod: "",
+        },
+      };
+    }
+    case "SAVE_SHIPPING_ADDRESS": {
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          shippingAddress: {
+            ...state.cart.shippingAddress,
+            ...action.payload,
+          },
+        },
+      };
+    }
+    case "SAVE_PAYMENT_METHOD": {
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          paymentMethod: action.payload
+        },
+      };
+    }
     case "ADD_USERNAME": {
       const username = action.payload;
-      return {...state, user: username}
+      return { ...state, user: username };
     }
     default:
       return state;

@@ -26,7 +26,7 @@ export default function Cart() {
       setTotal(
         (total) =>
           (total = cartItems.reduce((a, c) => {
-            return a + c.quantity * c.p;
+            return a + c.quantity * c.price;
           }, 0))
       );
     }

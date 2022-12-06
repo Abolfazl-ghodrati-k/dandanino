@@ -3,7 +3,7 @@ import bcryptjs from "bcryptjs"
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import connectMongo from "../../../database/conn";
-import Users from "../../../model/Schema";
+import Users from "../../../model/User";
 
 export default NextAuth({
   session: {

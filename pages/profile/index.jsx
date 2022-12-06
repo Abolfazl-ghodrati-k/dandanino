@@ -5,6 +5,7 @@ import { BiArrowBack } from "react-icons/bi";
 import { useRouter } from "next/router";
 import { Store } from "../../utils/Store";
 import { useSession } from "next-auth/react";
+import axios from "axios";
 
 export default function Login() {
   const [error, seterror] = useState(false);
@@ -19,10 +20,10 @@ export default function Login() {
   const pattern = /^[0-9]{11}$/;
 
   useEffect(() => {
-    if(session?.user){
-      router.push('/userinfo');
+    if (session?.user) {
+      router.push("/userinfo");
     }
-  },[]);
+  }, []);
 
   const SigningUp = () => {
     dispatch({ type: "ADD_USERNAME", payload: username });
@@ -32,22 +33,19 @@ export default function Login() {
     });
   };
 
-  // const checkUser = async () => {
-  //   const options = {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(username),
-  //   };
-  //   var user
-  //   var error;
-  //   await fetch("http://localhost:3000/api/auth/user", options)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       user = data;
-  //     })
-  //     .catch((err) => console.log(err));
-  //   return user;
-  // };
+  const AdminLogin = () => {
+    dispatch({ type: "ADD_USERNAME", payload: username });
+    router.push({
+      pathname: "/admin/login",
+    });
+  };
+
+  const checkUser = async () => {
+    const {data:{user}} = await axios.post("/api/auth/user", {
+      username: username,
+    });
+    return user
+  };
 
   const getcode = async () => {
     const valid = pattern.test(username);
@@ -57,9 +55,14 @@ export default function Login() {
       seterror((err) => (err = true));
       return;
     }
-
+    var user = await checkUser();
+    // console.log(user);
+    if (user?.isAdmin) {
+     return AdminLogin();
+    }
+    return SigningUp();
+    // console.log(user);
     setLoading((loading) => (loading = false));
-    SigningUp();
   };
 
   return (

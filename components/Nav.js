@@ -9,14 +9,16 @@ import DropdownLink from "./DropdownLink";
 import { Store } from "../utils/Store";
 import { products } from "../utils/data";
 import { useRouter } from "next/router";
+import dynamic from 'next/dynamic';
 
-export default function Nav() {
+
+function Nav() {
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
 
-  const router = useRouter()
-  console.log(router.pathname)
-  
+  const router = useRouter();
+  console.log(router.pathname);
+
   return (
     <div className="flex px-[2rem]  sm:px-[5rem]  justify-between items-center w-full mx-auto p-2">
       <Menu as="div" className="relative inline-block sm:hidden text-right">
@@ -26,17 +28,21 @@ export default function Nav() {
         <Menu.Items className="absolute  text-right -right-8 w-[95vw] top-12 z-10 origin-top-right rounded-lg p-1 nav-bg shadow-lg">
           <Menu.Item>
             <DropdownLink className="dropdown-link" href="/products">
-              محصولات
+              <span className="w-full">محصولات</span>
             </DropdownLink>
           </Menu.Item>
           <Menu.Item>
             <DropdownLink className="dropdown-link" href="/contact-us">
-              تماس با ما
+              <span className="w-full"> تماس با ما</span>
             </DropdownLink>
           </Menu.Item>
           <Menu.Item>
-            <DropdownLink className="dropdown-link" href="/profile" redirect={router.pathname}>
-              حساب کاربری
+            <DropdownLink
+              className="dropdown-link"
+              href="/profile"
+              redirect={router.pathname}
+            >
+              <span className="w-full"> حساب کاربری</span>
             </DropdownLink>
           </Menu.Item>
         </Menu.Items>
@@ -58,7 +64,12 @@ export default function Nav() {
       </div>
       <div className="flex  justify-between items-center">
         <span className=" hidden sm:flex">
-          <Link href={{pathname:"/profile",query:{redirect: router.pathname}}}>
+          <Link
+            href={{
+              pathname: "/profile",
+              query: { redirect: router.pathname },
+            }}
+          >
             <span className="flex mt-1 flex-col items-center ml-2 hover:text-[#167495] text-[black] group transition-all duration-5000 cursor-pointer">
               <p className="mb-1 text-[.6rem] ms:text-[.7rem]">حساب کاربری</p>
               <div className="mx-auto h-[1px] bg-[black] w-[0] group-hover:w-full transition-width duration-500"></div>
@@ -79,3 +90,5 @@ export default function Nav() {
     </div>
   );
 }
+
+export default dynamic(() => Promise.resolve(Nav), { ssr: false });
