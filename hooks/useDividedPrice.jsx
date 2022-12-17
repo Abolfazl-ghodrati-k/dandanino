@@ -2,7 +2,7 @@ import React from "react";
 
 function useDividedPrice(price) {
   const stringedPrice = price.toString();
-  console.log(stringedPrice);
+  // console.log(stringedPrice);
   const stringLength = stringedPrice.length;
   const Parts = Math.ceil(stringLength / 3);
   const baghimande = stringLength % 3;

@@ -2,7 +2,7 @@ import React from 'react'
 
 function OthProducts({product}) {
   return (
-    <div>{product.slug}</div>
+    <div className='h-[300px]'>{product.slug}</div>
   )
 }
 

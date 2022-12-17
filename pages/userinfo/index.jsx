@@ -10,17 +10,10 @@ function index() {
   ) => {
     e.preventDefault()
     const error = false
-    console.log('im')
     if(!error) {
       router.push(router.query.redirect)
     }
   };
-
-  
-
-  useEffect(() => {
-    console.log(router,"redirect")
-  })
 
   return (
     <Layout>

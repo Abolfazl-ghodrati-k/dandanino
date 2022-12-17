@@ -5,7 +5,7 @@ import db from "../../database/db";
 import Product from "../../model/Product";
 
 function ProductItem(props) {
-  console.log(props);
+  // console.log(props);
   return <Layout>product</Layout>;
 }
 

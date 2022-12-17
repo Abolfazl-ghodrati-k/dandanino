@@ -3,10 +3,10 @@ import Hero from "../../components/Hero";
 import Products from "../products/_products";
 
 export default function Landing({products}) {
-  console.log(products)
+  // console.log(products)
   return (
     <div className="w-full">
-      <Hero />
+      <Hero products={products}/>
       {products ? <Products products={products} /> : "loading..."}
     </div>
   );

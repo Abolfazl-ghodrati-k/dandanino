@@ -2,7 +2,7 @@ import React from 'react'
 
 function SpecialProduct() {
   return (
-    <div className='h-[460px]'>SpecialProduct</div>
+    <div className='h-[300px]'>SpecialProduct</div>
   )
 }
 

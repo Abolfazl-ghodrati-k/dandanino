@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { BiArrowBack } from "react-icons/bi";
 import { Store } from "../../utils/Store";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { set } from "mongoose";
+import axios from "axios";
 
 function code() {
   const [loading, setloading] = useState(false);
@@ -38,44 +38,32 @@ function code() {
   }, []);
 
   const SignUP = async () => {
-    const options = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username: state.user }),
-    };
-    var user;
-    await fetch(process.env.BASE_URL + "/api/auth/signup", options)
-      .then((res) => res.json())
-      .then((data) => {
-        user = data;
-      })
-      .catch((err) => console.log(err));
-    return user;
+    var {data:{user}} = await axios.post("/api/auth/signup", {
+      username: state.user,
+    });
+    return user
   };
 
   const checkCode = async () => {
-    console.log(trueCode);
-    console.log(JSON.stringify(state.user));
     if (Code == trueCode) {
       // console.log(first)
       setloading((loading) => (loading = true));
       const user = await SignUP();
-      console.log(user);
       setloading((loading) => (loading = false));
       if (user) {
         try {
           const result = await signIn("credentials", {
             redirect: true,
-            username: state.user,
+            username: user.username,
             callbackUrl: route.query.redirect || "/",
           });
           // console.log(result,'result')
           setloading((loading) => (loading = false));
         } catch (error) {
-          console.log(error);
+          // console.log(error);
         }
       }
-      route.push({ pathname: route.query.redirect || "/" });
+      // route.push({ pathname: route.query.redirect || "/" });
     }
   };
   return (

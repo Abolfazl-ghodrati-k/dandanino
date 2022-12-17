@@ -5,12 +5,11 @@ import { HiOutlineShoppingBag, HiOutlineMenu } from "react-icons/hi";
 import { IoIosArrowBack } from "react-icons/io";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { Store } from "../utils/Store";
-import { products } from "../utils/data";
 import Link from "next/link";
 
-function Hero() {
+function Hero({products}) {
   const { state, dispatch } = useContext(Store);
-  const product = products.find((x) => x.slug === "waterjet-dandanino");
+  const product = products.find((x) => x.slug === "Fairywill-F30");
 
   const addToCartHandler = () => {
     const existItem = state.cart.cartItems.find(
@@ -28,7 +27,7 @@ function Hero() {
   };
 
   return (
-    <div className="hero relative h-[98vh] -z-1 flex w-[95vw] sm:w-[97vw] sm:px-3 mx-auto justify-start items-start">
+    <div className="hero relative -z-1 flex w-[95vw] sm:w-[97vw] sm:px-3 mx-auto justify-start items-start">
       <div className="flex flex-col items-center justify-start w-[100%] p-1 sm:mt-[4rem] mt-[2rem]">
         <p className="text-[0.7rem] md:text-[1.1rem] font-bold text-right w-full sm:py-4 text-[#98a2b3]">
           واتر&zwnj;جت دندانینو

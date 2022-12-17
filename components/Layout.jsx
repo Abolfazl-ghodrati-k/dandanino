@@ -6,7 +6,7 @@ import Footer from "./Footer";
 
 function Layout({ title, children, home }) {
   const [LandNav, setLandNav] = useState(true);
-  const [mainH, setmainH] = useState()
+  const [mainH, setmainH] = useState();
   const header = useRef();
   const main = useRef();
   const footer = useRef();
@@ -17,10 +17,10 @@ function Layout({ title, children, home }) {
     if (router.pathname !== "/") {
       setLandNav((ln) => (ln = false));
       // let mainH = 100 - ((footer.current.clientHeight)*100/ document.body.clientHeight)
-      let mainH = document.body.clientHeight - footer.current.clientHeight
-      setmainH(mh => mh = mainH)
+      let mainH = document.body.clientHeight - footer.current.clientHeight;
+      setmainH((mh) => (mh = mainH));
     }
-  },[router.pathname]);
+  }, [router.pathname, mainH]);
   return (
     <>
       <Head>
@@ -30,7 +30,11 @@ function Layout({ title, children, home }) {
         <link rel="preconnect" href="//v1.fontapi.ir" />
         <link href="https://v1.fontapi.ir/css/Vazir" rel="stylesheet"></link>
       </Head>
-      <div className={`flex ${LandNav? '':'max-h-screen'} min-h-screen flex-col justify-between`}>
+      <div
+        className={`flex ${
+          LandNav ? "" : "max-h-screen"
+        } min-h-screen flex-col justify-between max-w-[1400px] overflow-x-hidden overflow-visible mx-auto`}
+      >
         <header
           className={`fixed z-10 ${
             LandNav
@@ -40,10 +44,22 @@ function Layout({ title, children, home }) {
         >
           <Nav />
         </header>
-        <main className={`bg-no-repeat sm:bg-hero overflow-y-scroll  ${LandNav ? '' : 'bg-[#ecf0f3]'}`} style={{minHeight: mainH + 'px'}}>
-          <div className={`${LandNav ? 'mt-[4rem]':'mt-[5rem]'}`} >{children}</div>
+        <main
+          className={`bg-no-repeat sm:bg-hero overflow-y-scroll  ${
+            LandNav ? "" : "bg-[#ecf0f3]"
+          }`}
+          style={{ minHeight: mainH + "px" }}
+        >
+          <div className={`${LandNav ? "mt-[4rem]" : "mt-[5rem]"}`}>
+            {children}
+          </div>
         </main>
-        <footer ref={footer} className={`pt-1 border border-t-1 border-l-0 border-r-0 border-b-0 border-zinc-600 border-solid ${LandNav? '': 'bg-[#F9FAFB]'}`}>
+        <footer
+          ref={footer}
+          className={`pt-1 border border-t-1 border-l-0 border-r-0 border-b-0 border-zinc-600 border-solid ${
+            LandNav ? "" : "bg-[#F9FAFB]"
+          }`}
+        >
           <Footer />
         </footer>
       </div>

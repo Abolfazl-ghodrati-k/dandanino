@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import Image from "next/image";
 import React, { useContext, useEffect, useState } from "react";
 import { AiOutlinePlus, AiOutlineDelete, AiOutlineMinus } from "react-icons/ai";
@@ -9,7 +10,18 @@ export default function Card({ cart, lastItem, firstItem }) {
   const { state, dispatch } = useContext(Store);
 
   const FinalString = useDividedPrice(cart.quantity * cart.price);
-  const unitPrice = useDividedPrice(cart.price)
+  const unitPrice = useDividedPrice(cart.price);
+
+  useEffect(() => {
+    Cookies.set(
+      "cart",
+      JSON.stringify({
+        ...cart,
+        shippingAddress: {},
+        paymentMethod: "",
+      })
+    );
+  },[cart]);
 
   const removeItemHandler = (item) => {
     dispatch({ type: "CART_REMOVE_ITEM", payload: item });
@@ -20,7 +32,14 @@ export default function Card({ cart, lastItem, firstItem }) {
       type: "CART_ADD_ITEM",
       payload: { ...item, quantity: cartQuantity + 1 },
     });
-    console.log(cart);
+    // Cookies.set(
+    //   "cart",
+    //   JSON.stringify({
+    //     ...cart,
+    //     shippingAddress: {},
+    //     paymentMethod: "",
+    //   })
+    // );
   };
   const decreaseQua = (item) => {
     const cartQuantity = cart.quantity;
@@ -28,7 +47,15 @@ export default function Card({ cart, lastItem, firstItem }) {
       type: "CART_ADD_ITEM",
       payload: { ...item, quantity: cartQuantity - 1 },
     });
-  }
+    // Cookies.set(
+    //   "cart",
+    //   JSON.stringify({
+    //     ...cart,
+    //     shippingAddress: {},
+    //     paymentMethod: "",
+    //   })
+    // );
+  };
   return (
     <div
       className={`bg-[#F9FAFB] w-full flex justify-start text-right items-center p-2 ${
@@ -54,7 +81,10 @@ export default function Card({ cart, lastItem, firstItem }) {
                   <AiOutlineDelete size={20} />
                 </span>
               ) : (
-                <span onClick={()=> decreaseQua(cart)} className="hover:bg-slate-300 rounded p-1 transition-all cursor-pointer">
+                <span
+                  onClick={() => decreaseQua(cart)}
+                  className="hover:bg-slate-300 rounded p-1 transition-all cursor-pointer"
+                >
                   <AiOutlineMinus size={20} />
                 </span>
               )}
@@ -62,7 +92,10 @@ export default function Card({ cart, lastItem, firstItem }) {
             <div className="mt-1">
               <PersianNumber>{cart.quantity}</PersianNumber>
             </div>
-            <div className="hover:bg-slate-300 rounded p-1 transition-all cursor-pointer" onClick={() => IncreaseQua(cart)}>
+            <div
+              className="hover:bg-slate-300 rounded p-1 transition-all cursor-pointer"
+              onClick={() => IncreaseQua(cart)}
+            >
               <AiOutlinePlus size={20} />
             </div>
           </div>

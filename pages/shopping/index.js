@@ -32,7 +32,7 @@ function ShippingScreen() {
     } else {
       router.push("/");
     }
-  });
+  },[setValue, shippingAddress]);
 
   const submitHandler = ({
     firstName,
@@ -40,11 +40,12 @@ function ShippingScreen() {
     address,
     city,
     postalCode,
-    melliCode,
+    nationalCode,
   }) => {
+    // console.log("melliCode")
     dispatch({
       type: "SAVE_SHIPPING_ADDRESS",
-      payload: { firstName, lastName, melliCode, address, city, postalCode },
+      payload: { firstName, lastName, nationalCode, address, city, postalCode },
     });
     Cookies.set(
       "cart",
@@ -53,7 +54,7 @@ function ShippingScreen() {
         shippingAddress: {
           firstName,
           lastName,
-          melliCode,
+          nationalCode,
           address,
           city,
           postalCode,
@@ -67,7 +68,7 @@ function ShippingScreen() {
   return (
     <Layout title={"صفحه خرید"}>
       <CheckoutWizard activeStep={1} />
-      <form onSubmit={handleSubmit(submitHandler)}>
+      <form>
         <div>
           <label>نام</label>
           <input
@@ -78,8 +79,8 @@ function ShippingScreen() {
               required: "لطفا نام خود را وارد کنید",
             })}
           />
-          {errors.fullName && (
-            <div className="text-red-500">{errors.fullName.message}</div>
+          {errors.firstName && (
+            <div className="text-red-500">{errors.firstName.message}</div>
           )}
         </div>
         <div>
@@ -92,26 +93,23 @@ function ShippingScreen() {
               required: "لطفا نام خانوادگی خود را وارد کنید",
             })}
           />
-          {errors.fullName && (
-            <div className="text-red-500">{errors.fullName.message}</div>
+          {errors.lastName && (
+            <div className="text-red-500">{errors.lastName.message}</div>
           )}
         </div>
         <div>
           <label>کد ملی</label>
           <input
             type="text"
-            id="melliCode"
+            id="nationalCode"
             
-            {...register("melliCode", {
+            {...register("nationalCode", {
               required: "لطفا کد ملی خود را وارد کنید",
-              minLength: {
-                value: 10,
-                message: "کد ملی را به فرمت صحیح وارد کنید",
-              },
+              minLength: 10
             })}
           />
-          {errors.fullName && (
-            <div className="text-red-500">{errors.fullName.message}</div>
+          {errors.nationalCode && (
+            <div className="text-red-500">{errors.nationalCode.message}</div>
           )}
         </div>
         <div>
@@ -128,8 +126,8 @@ function ShippingScreen() {
               },
             })}
           />
-          {errors.fullName && (
-            <div className="text-red-500">{errors.fullName.message}</div>
+          {errors.postalCode && (
+            <div className="text-red-500">{errors.postalCode.message}</div>
           )}
         </div>
         <div>
@@ -143,8 +141,8 @@ function ShippingScreen() {
               minLength: { value: 3, message: "کجا زندگی میکنی چاقال ؟" },
             })}
           />
-          {errors.fullName && (
-            <div className="text-red-500">{errors.fullName.message}</div>
+          {errors.city && (
+            <div className="text-red-500">{errors.city.message}</div>
           )}
         </div>
         <div>
@@ -158,11 +156,13 @@ function ShippingScreen() {
               minLength: { value: 3, message: "کجا زندگی میکنی چاقال ؟" },
             })}
           />
-          {errors.fullName && (
-            <div className="text-red-500">{errors.fullName.message}</div>
+          {errors.address && (
+            <div className="text-red-500">{errors.address.message}</div>
           )}
         </div>
-        <input type="submit" value="تایید" />
+        <button className="w-[100px] bg-[pink]" onClick={handleSubmit(submitHandler)}>
+          تایید
+        </button>
       </form>
     </Layout>
   );

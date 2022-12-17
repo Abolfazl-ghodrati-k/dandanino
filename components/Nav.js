@@ -16,7 +16,7 @@ function Nav() {
   const { cart } = state;
 
   const router = useRouter();
-  console.log(router.pathname);
+  // console.log(router.pathname);
 
   if (router.pathname) {
     return (

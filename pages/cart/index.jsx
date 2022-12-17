@@ -30,17 +30,21 @@ export default function Cart() {
           }, 0))
       );
     }
-    console.log(FinalPrice);
+    // console.log(FinalPrice);
   }, [FinalPrice, cartItems]);
 
   const Shopping = () => {
-    if (session?.user) {
-      router.push({ pathname: "/shopping" });
+    if (cartItems.length > 0) {
+      if (session?.user) {
+        router.push({ pathname: "/shopping" });
+      } else {
+        router.push({
+          pathname: "/profile",
+          query: { redirect: "/shopping" },
+        });
+      }
     } else {
-      router.push({
-        pathname: "/profile",
-        query: { redirect: "/shopping" },
-      });
+      router.push('/')
     }
   };
 
@@ -75,7 +79,7 @@ export default function Cart() {
                     cartItems.map((cart, index) => {
                       var lastItem = false;
                       var firstItem = false;
-                      console.log(cartItems.length, index + 1);
+                      // console.log(cartItems.length, index + 1);
                       if (
                         cartItems.length > 1 &&
                         index + 1 == cartItems.length

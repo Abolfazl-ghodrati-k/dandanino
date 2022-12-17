@@ -1,4 +1,3 @@
-
 import Users from "../../../model/User";
 import Cors from "cors";
 import db from "../../../database/db";
@@ -36,8 +35,8 @@ export default async function handler(req, res) {
 
     const checkexisting = await Users.findOne({ username });
     if (checkexisting) {
-      return res.status(400).json({ status: 400, data: checkexisting });
       await db.disconnect();
+      return res.status(200).json({ status: 200, user: checkexisting });
     }
 
     Users.create(
@@ -51,9 +50,11 @@ export default async function handler(req, res) {
         if (err) {
           return res.status(404).json({ err });
         }
+
         res.status(201).json({ status: true, user: data });
       }
     );
+    await db.disconnect();
   } else {
     res.status(500).json({ message: "HTTP method not valid" });
   }
