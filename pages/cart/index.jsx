@@ -36,11 +36,11 @@ export default function Cart() {
   const Shopping = () => {
     if (cartItems.length > 0) {
       if (session?.user) {
-        router.push({ pathname: "/shopping" });
+        router.push({ pathname: "/shipping" });
       } else {
         router.push({
           pathname: "/profile",
-          query: { redirect: "/shopping" },
+          query: { redirect: "/shipping" },
         });
       }
     } else {

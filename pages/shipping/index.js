@@ -61,8 +61,8 @@ function ShippingScreen() {
         },
       })
     );
-
-    router.push("/payment");
+    
+    router.push(router.query.redirect || "/payment");
   };
 
   return (

@@ -27,7 +27,7 @@ function Products({ products }) {
           </div>
           <div className="col-span-2 grid grid-cols-1 gap-4 md:col-span-1">
             {OtherProducts.map((product) => (
-              <div className="bg-[red] col-span-1 rounded-lg">
+              <div key={product.name} className="bg-[red] col-span-1 rounded-lg">
                 <OthProducts product={product} />
               </div>
             ))}

@@ -7,7 +7,7 @@ import Layout from "../../components/Layout";
 import { Store } from "../../utils/Store";
 
 function index() {
-  const [selectedPaymentMethod, setselectedPaymentMethod] = useState("");
+  const [selectedPaymentMethod, setselectedPaymentMethod] = useState('');
 
   const router = useRouter();
 
@@ -27,7 +27,7 @@ function index() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (!selectedPaymentMethod) {
+    if (!selectedPaymentMethod.id) {
       return toast.error("ریدی دایی جان");
     }
     dispatch({ type: "SAVE_PAYMENT_METHOD", payload: selectedPaymentMethod });
@@ -54,8 +54,8 @@ function index() {
                   className="p-2 outline-none focus:ring-0"
                   id="payment"
                   type={"radio"}
-                  checked={selectedPaymentMethod === payment.id}
-                  onChange={() => setselectedPaymentMethod(payment.id)}
+                  checked={selectedPaymentMethod.id === payment.id}
+                  onChange={() => setselectedPaymentMethod(payment)}
                 />
                 <label htmlFor="payment" className="p-2">
                   {payment.title}{payment.id}
