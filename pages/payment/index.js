@@ -20,7 +20,7 @@ function index() {
 
   useEffect(() => {
     if (!shippingAddress.address) {
-      return router.push("/shopping");
+      return router.push("/shipping");
     }
     setselectedPaymentMethod(pm => pm = paymentMethod || "");
   }, [paymentMethod, router, shippingAddress.address]);
@@ -43,32 +43,23 @@ function index() {
   return (
     <Layout>
       <CheckoutWizard activeStep={2} />
-      <form onSubmit={submitHandler}>
-        <h1>انتخاب نحوه پرداخت</h1>
+      <form onSubmit={submitHandler} className="mx-1">
+        <h1 className="text-[1.3rem] mb-2 font-bold">انتخاب نحوه پرداخت</h1>
         <div>
           {[{title:"پرداخت در محل",id:1}].map((payment) => {
             return (
-              <div key={payment.id}>
-                <input
-                  name="paymentMethod"
-                  className="p-2 outline-none focus:ring-0"
-                  id="payment"
-                  type={"radio"}
-                  checked={selectedPaymentMethod.id === payment.id}
-                  onChange={() => setselectedPaymentMethod(payment)}
-                />
-                <label htmlFor="payment" className="p-2">
-                  {payment.title}{payment.id}
-                </label>
+              <div key={payment.id} onClick={()=> {setselectedPaymentMethod(payment)}} className="radiogroup p-2 mb-2 flex items-center justify-start cursor-pointer">
+                  <div className={`indicator ml-2 ${payment.id == selectedPaymentMethod.id ? 'after:bg-[#c2d6e5] before:bg-[#3b3f42]': ''}`}></div>
+                  {payment.title}
               </div>
             );
           })}
         </div>
-        <div className="mb-4 flex justify-between">
-          <button onClick={() => router.push("/shopping")} type="button">
+        <div className="mx-2 flex justify-between">
+          <button onClick={() => router.push("/shipping")} type="button">
             برگشت
           </button>
-          <button>تایید</button>
+          <button className="bg-[#dc929e] p-2 px-3 hover:bg-[pink] rounded-md">تایید</button>
         </div>
       </form>
     </Layout>

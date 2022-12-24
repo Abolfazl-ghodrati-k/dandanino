@@ -54,10 +54,13 @@ function index() {
           cartItems: [],
         })
       );
-      router.push(`/order/${data._id}`);
+      toast.success("سفارش شما با موفقیت ثبت شد");
+      setTimeout(() => {
+        router.push(`/order/${data._id}`);
+      }, [1000]);
     } catch (err) {
       setLoading(false);
-      console.log(err)
+      // console.log(err)
       toast.error(err);
     }
   };
@@ -75,7 +78,7 @@ function index() {
           <div className="overflow-x-auto md:col-span-3">
             <div className="card  p-5">
               <h2 className="mb-2 text-lg">اطلاعات خریدار</h2>
-              <div>
+              <div className="text-[.8rem]">
                 <div>
                   {shippingAddress.firstName} {shippingAddress.lastName}
                 </div>
@@ -96,7 +99,7 @@ function index() {
                 </Link>
               </div>
             </div>
-            <div className="card  p-5">
+            <div className="card  p-5 text-[.8rem]">
               <h2 className="mb-2 text-lg">نحوه پرداخت</h2>
               <div>{paymentMethod.title}</div>
               <div>
@@ -126,7 +129,7 @@ function index() {
                     <tr key={item._id} className="border-b">
                       <td>
                         <Link href={`/products/${item.slug}`}>
-                          <div className="flex items-center">
+                          <div className="flex flex-col md:flex-row items-center">
                             <Image
                               src={item.image}
                               alt={item.name}
@@ -134,19 +137,21 @@ function index() {
                               height={50}
                             ></Image>
                             &nbsp;
-                            {item.name}
+                            <span className="text-[.8rem] text-left">
+                              {item.name}
+                            </span>
                           </div>
                         </Link>
                       </td>
-                      <td className=" p-5 text-right">
+                      <td className=" p-5 text-right text-[.8rem] md:text-[1rem]">
                         <PersianNumber>{item.quantity}</PersianNumber>
                       </td>
-                      <td className="p-5 text-right">
+                      <td className="p-5 text-right text-[.8rem] md:text-[1rem]">
                         <PersianNumber>
                           {useDividedPrice(item.price)} تومان
                         </PersianNumber>
                       </td>
-                      <td className="p-5 text-right">
+                      <td className="p-5 text-right text-[.8rem] md:text-[1rem]">
                         <PersianNumber>
                           {useDividedPrice(item.quantity * item.price)} تومان
                         </PersianNumber>
@@ -167,19 +172,31 @@ function index() {
                 <li>
                   <div className="mb-2 flex justify-between">
                     <div>هزینه سفارشات</div>
-                    <div>{useDividedPrice(itemsPrice)} تومان</div>
+                    <div>
+                      <PersianNumber>
+                        {useDividedPrice(itemsPrice)} تومان
+                      </PersianNumber>
+                    </div>
                   </div>
                 </li>
                 <li>
                   <div className="mb-2 flex justify-between">
                     <div>هزینه ارسال</div>
-                    <div>{useDividedPrice(shippingPrice)} تومان</div>
+                    <div>
+                      <PersianNumber>
+                        {useDividedPrice(shippingPrice)} تومان
+                      </PersianNumber>
+                    </div>
                   </div>
                 </li>
                 <li>
                   <div className="mb-2 flex justify-between">
                     <div>مجموع خرید</div>
-                    <div>{useDividedPrice(totalPrice)}</div>
+                    <div>
+                      <PersianNumber>
+                        {useDividedPrice(totalPrice)} تومان
+                      </PersianNumber>
+                    </div>
                   </div>
                 </li>
                 <li>

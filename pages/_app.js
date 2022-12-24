@@ -4,6 +4,7 @@ import { SessionProvider, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { ToastContainer } from "react-toastify";
 import axios from "axios";
+import 'react-toastify/dist/ReactToastify.css';
 
 axios.defaults.baseURL = "http://localhost:3000";
 axios.defaults.headers.post["Content-Type"] = "application/json";

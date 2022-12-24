@@ -25,11 +25,8 @@ function useDividedPrice(price) {
           baghimande + baghimande * i,
           baghimande + baghimande * i + 3
         );
-      }else {
-        var part = stringedPrice.slice(
-            3 + 3 * i,
-            3 + (3 * i) + 3
-          );
+      } else {
+        var part = stringedPrice.slice(3 + 3 * i, 3 + 3 * i + 3);
       }
       Stringcp = Stringcp + part + `${i == Parts - 2 ? "" : ","}`;
       //   console.log(part);
@@ -37,8 +34,10 @@ function useDividedPrice(price) {
     FinalString = FinalString + Stringcp;
   }
   // console.log(FinalString);
-
-  return FinalString;
+  if (stringLength <= 3){
+    return stringedPrice
+  }
+   return FinalString;
 }
 
 export default useDividedPrice;
