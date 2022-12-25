@@ -20,8 +20,11 @@ export default function Login() {
   const pattern = /^[0-9]{11}$/;
 
   useEffect(() => {
-    if (session?.user) {
+    if (session?.user && !session?.user?.isAdmin) {
       router.push("/userinfo");
+    }
+    if(session?.user?.isAdmin) {
+      router.push("/admin/dashboard")
     }
   }, []);
 
@@ -33,18 +36,21 @@ export default function Login() {
     });
   };
 
-  const AdminLogin = () => {
-    dispatch({ type: "ADD_USERNAME", payload: username });
+  const AdminLogin = (user) => {
+    dispatch({ type: "ADD_USERNAME", payload: user });
     router.push({
       pathname: "/admin/login",
     });
   };
 
   const checkUser = async () => {
-    const {data:{user}} = await axios.post("/api/auth/user", {
-      username: username,
+    const {
+      data,
+    } = await axios.post("/api/auth/user", {
+       username,
     });
-    return user
+    // console.log(data)
+    return data;
   };
 
   const getcode = async () => {
@@ -58,9 +64,10 @@ export default function Login() {
     var user = await checkUser();
     // console.log(user);
     if (user?.isAdmin) {
-     return AdminLogin();
+      AdminLogin(user);
+    } else {
+      SigningUp();
     }
-    return SigningUp();
     // console.log(user);
     setLoading((loading) => (loading = false));
   };

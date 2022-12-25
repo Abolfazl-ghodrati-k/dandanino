@@ -1,4 +1,4 @@
-import Router, { useRouter } from "next/router";
+import routerr, { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 import { BiArrowBack } from "react-icons/bi";
 import { Store } from "../../utils/Store";
@@ -9,7 +9,7 @@ function code() {
   const [loading, setloading] = useState(false);
   const [Code, setCode] = useState("");
   const [trueCode, settrueCode] = useState("");
-  const route = useRouter();
+  const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const { data: session } = useSession();
 
@@ -27,12 +27,12 @@ function code() {
   useEffect(() => {
     // console.log(session)
     if (session?.user) {
-      route.push({ pathname: route.query.redirect || "/" });
+      router.push({ pathname: router.query.redirect || "/" });
     } else {
       if (state.user) {
         getCode().then((res) => settrueCode((code) => (code = res)));
       } else {
-        route.push("/profile");
+        router.push("/profile");
       }
     }
   }, []);
@@ -50,20 +50,19 @@ function code() {
       setloading((loading) => (loading = true));
       const user = await SignUP();
       setloading((loading) => (loading = false));
-      if (user) {
+      if (user && !user?.isAdmin) {
+        console.log(user)
         try {
           const result = await signIn("credentials", {
             redirect: true,
             username: user.username,
-            callbackUrl: route.query.redirect || "/",
+            callbackUrl: router.query.redirect || "/",
           });
-          // console.log(result,'result')
           setloading((loading) => (loading = false));
         } catch (error) {
-          // console.log(error);
+          console.log(error);
         }
       }
-      // route.push({ pathname: route.query.redirect || "/" });
     }
   };
   return (

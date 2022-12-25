@@ -1,3 +1,5 @@
+import bcrypt from 'bcryptjs';
+
 export const products = [
   // {
   //   name: "واترجت دندانینو",
@@ -50,7 +52,7 @@ export const users = [
   {
     name: "ابوالفضل قدرتی",
     username: "09020257735",
-    password: "Tsolm!571080",
+    password: bcrypt.hashSync("Tsolm!571080"),
     isAdmin: true,
   },
 ];

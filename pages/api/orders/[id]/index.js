@@ -9,7 +9,7 @@ const handler = async (req, res) => {
   }
 
   await db.connect();
-
+  // res.send(req.query.id)
   const order = await Order.findById(req.query.id);
   await db.disconnect();
   res.send(order);

@@ -1,4 +1,4 @@
-import Users from "../../../model/User";
+import User from "../../../model/User";
 import Cors from "cors";
 import db from "../../../database/db";
 
@@ -27,14 +27,16 @@ export default async function handler(req, res) {
       return res.status(404).json({ error: "Dont have form data" });
     }
 
-    const {username} = req.body;
-    const user = await Users.findOne({ username });
-    if (user) {
-      return res.status(200).json({ status: 200, user: user });
-    } else {
-      return res.status(200).json({ status: 200, message: "User not found", user: username });
-    }
-    await db.disconnect();
+    const username = req.body;
+    // return res.send(username)
+    const user = await User.findOne(username);
+    return res.send(user)
+    // if (user) {
+    //   return res.status(200).json({ status: 200, user: user });
+    // } else {
+    //   return res.status(200).json({ status: 200, message: "User not found", user: username });
+    // }
+    // await db.disconnect();
 
   }
   res.status(500).json({ message: "HTTP method not valid" });
