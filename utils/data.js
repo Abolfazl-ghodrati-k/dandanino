@@ -53,6 +53,7 @@ export const users = [
     name: "ابوالفضل قدرتی",
     username: "09020257735",
     password: bcrypt.hashSync("Tsolm!571080"),
+    image: '',
     isAdmin: true,
   },
 ];

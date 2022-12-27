@@ -68,7 +68,9 @@ span {
 }
 .cart {
   @apply mb-5  rounded-lg border border-gray-200  shadow-md;
-
+}
+.admincart {
+  @apply cart bg-[white]
 }
 
 .primary-button {

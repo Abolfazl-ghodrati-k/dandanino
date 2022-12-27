@@ -33,7 +33,7 @@ function Layout({ title, children, home }) {
       <div
         className={`flex ${
           LandNav ? "" : "max-h-screen"
-        } min-h-screen flex-col justify-between max-w-[1400px] overflow-x-hidden overflow-visible mx-auto`}
+        } min-h-screen flex-col justify-between max-w-[1400px] overflow-x-hidden overflow-y-hidden mx-auto`}
       >
         <header
           className={`fixed z-10 ${

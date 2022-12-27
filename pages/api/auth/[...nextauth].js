@@ -44,7 +44,7 @@ export default NextAuth({
                 _id: user._id,
                 name: user.name,
                 email: user.isAdmin,
-                image: "f",
+                image: user.image,
                 username: user.username,
                 password: user.password,
                 isAdmin: user.isAdmin,

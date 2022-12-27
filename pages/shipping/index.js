@@ -82,7 +82,7 @@ function ShippingScreen() {
               })}
             />
             {errors.firstName && (
-              <div className="text-red-500 mt-1 text-right text-right w-full text-[.8rem]">
+              <div className="text-red-500 mt-1 text-right w-full text-[.8rem]">
                 {errors.firstName.message}
               </div>
             )}
