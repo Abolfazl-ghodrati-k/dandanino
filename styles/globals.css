@@ -73,6 +73,10 @@ span {
   @apply cart bg-[white]
 }
 
+.tirtiary-button{
+  @apply p-1 py-2 rounded-lg bg-[#3a9e9b] shadow-md shadow-[#35928F] hover:shadow-none hover:bg-[#35928F] text-[white] transition-shadow duration-300
+}
+
 .primary-button {
   @apply rounded bg-amber-300 py-2 px-4 shadow outline-none hover:bg-amber-400  active:bg-amber-500;
 }

@@ -16,7 +16,7 @@ function Nav() {
   const { cart } = state;
 
   const router = useRouter();
-  // console.log(router.pathname);
+  console.log(router.pathname);
 
   if (router.pathname) {
     return (
@@ -26,11 +26,11 @@ function Nav() {
             <HiOutlineMenu size={30} />
           </Menu.Button>
           <Menu.Items className="absolute  text-right -right-8 w-[95vw] top-12 z-10 origin-top-right rounded-lg p-1 nav-bg shadow-lg">
-            <Menu.Item>
+            {/* <Menu.Item>
               <DropdownLink className="dropdown-link" href="/products">
                 <span className="w-full">محصولات</span>
-              </DropdownLink>
-            </Menu.Item>
+              </DropdownLink> */}
+            {/* </Menu.Item> */}
             <Menu.Item>
               <DropdownLink className="dropdown-link" href="/contact-us">
                 <span className="w-full"> تماس با ما</span>
@@ -54,9 +54,9 @@ function Nav() {
         </div>
         <div className=" hidden sm:flex ml-auto mr-3 text-[.85rem] ms:mr-[3rem]">
           <ul className="flex flex-row-reverse items-center justify-start [&>*]:ml-2 sm:[&>*]:ml-6">
-            <li className="hover:text-[#167495] text-[black] transition-all">
+            {/* <li className="hover:text-[#167495] text-[black] transition-all">
               <Link href={"/products"}>محصولات</Link>
-            </li>
+            </li> */}
             <li className="hover:text-[#167495] text-[black] transition-all">
               <Link href={"/contact-us"}>تماس با ما</Link>
             </li>

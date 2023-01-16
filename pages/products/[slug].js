@@ -4,8 +4,8 @@ import db from "../../database/db";
 import Product from "../../model/Product";
 
 function ProductItem(props) {
-  // console.log(props);
-  return <Layout>product{props.name}</Layout>;
+  console.log(props);
+  return <Layout>product{props.product.name}</Layout>;
 }
 
 export default ProductItem;

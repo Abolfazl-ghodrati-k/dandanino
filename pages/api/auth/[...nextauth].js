@@ -6,6 +6,7 @@ import Users from "../../../model/User";
 import db from "../../../database/db";
 
 export default NextAuth({
+  secret: process.env.JWT_SECRET,
   session: {
     strategy: "jwt",
   },

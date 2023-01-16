@@ -26,14 +26,11 @@ function Layout({ title, children, home }) {
       <Head>
         <title>{title ? title : "دندانینو"}</title>
         <meta name="description" content="home page" />
-        <link rel="preconnect" href="//fdn.fontcdn.ir" />
-        <link rel="preconnect" href="//v1.fontapi.ir" />
-        <link href="https://v1.fontapi.ir/css/Vazir" rel="stylesheet"></link>
       </Head>
       <div
         className={`flex ${
           LandNav ? "" : "max-h-screen"
-        } min-h-screen flex-col justify-between max-w-[1400px] overflow-x-hidden overflow-y-hidden mx-auto`}
+        } min-h-screen flex-col justify-between overflow-x-hidden overflow-y-hidden mx-auto`}
       >
         <header
           className={`fixed z-10 ${

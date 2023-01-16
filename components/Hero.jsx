@@ -6,14 +6,17 @@ import { IoIosArrowBack } from "react-icons/io";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { Store } from "../utils/Store";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
-function Hero({products}) {
+function Hero({ products }) {
   const { state, dispatch } = useContext(Store);
   const product = products.find((x) => x.slug === "Fairywill-F30");
+  const router = useRouter();
+
 
   const addToCartHandler = () => {
     const existItem = state.cart.cartItems.find(
-      (x) => x.slug === "waterjet-dandanino"
+      (x) => x.slug === "Fairywill-F30"
     );
     const quantity = existItem ? existItem.quantity + 1 : 1;
     if (product.countInStock < quantity) {
@@ -27,7 +30,7 @@ function Hero({products}) {
   };
 
   return (
-    <div className="hero relative -z-1 flex w-[95vw] sm:w-[97vw] sm:px-3 mx-auto justify-start items-start">
+    <div className="relative hero -z-1 flex w-[95vw] sm:w-[97vw] sm:px-3 mx-auto justify-start items-start">
       <div className="flex flex-col items-center justify-start w-[100%] p-1 sm:mt-[4rem] mt-[2rem]">
         <p className="text-[0.7rem] md:text-[1.1rem] font-bold text-right w-full sm:py-4 text-[#98a2b3]">
           واتر&zwnj;جت دندانینو
@@ -43,15 +46,15 @@ function Hero({products}) {
         <div className="w-[45%] flex-col items-end justify-start ml-auto my-4">
           <div className="flex justify-start items-center w-full">
             <Link href="/cart">
-            <button
-              onClick={addToCartHandler}
-              className="text-[.5rem] ml:text-[.6rem]  p-3 px-5 rounded-lg bg-[#3a9e9b] shadow-md shadow-[#35928F] hover:shadow-none hover:bg-[#35928F] text-[white] transition-shadow duration-300  flex justify-center items-center  sm:ml-[2rem] lg:ml-[4rem]"
-            >
+              <button
+                onClick={addToCartHandler}
+                className="text-[.5rem] ml:text-[.6rem]  p-3 px-5 rounded-lg bg-[#3a9e9b] shadow-md shadow-[#35928F] hover:shadow-none hover:bg-[#35928F] text-[white] transition-shadow duration-300  flex justify-center items-center  sm:ml-[2rem] lg:ml-[4rem]"
+              >
                 <HiOutlineShoppingBag size={20} />
                 <span className="mx-1">افزودن به سبد خرید</span>
-            </button>
-              </Link>
-            <button className="text-[.8rem] justify-between items-center hidden sm:flex flex-row-reverse">
+              </button>
+            </Link>
+            <button className="text-[.8rem] justify-between items-center hidden sm:flex flex-row-reverse" onClick={()=> {router.push('/products/Fairywill-F30')}}>
               <IoIosArrowBack size={20} />
               <span>اطلاعات بیشتر</span>
             </button>
@@ -64,8 +67,13 @@ function Hero({products}) {
           </div> */}
         </div>
       </div>
-      <div className="absolute left-0 top-10 w-[165px] ms:w-[300px] sm:w-[350px] md:w-[400px] ml:w-[580px]">
-        <Image src={banner} width={550} alt="banner" />
+      <div className="absolute overflow-x-clip -left-[9rem] top-10 w-[300px] ms:w-[300px] sm:left-0 sm:w-[350px] md:w-[400px] ml:w-[580px]">
+        <div className="hidden sm:flex sm:w-full">
+          <Image src={banner} width={550} alt="banner" />
+        </div>
+        <div className="w-full absolute -right-[13rem] -scale-x-[1] md:right-0 md:w-auto sm:hidden sm:w-0 rotate-[5deg]">
+          <Image src={banner} width={550} alt="banner" />
+        </div>
       </div>
     </div>
   );
