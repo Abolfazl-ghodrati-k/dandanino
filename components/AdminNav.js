@@ -12,19 +12,19 @@ function AdminNav({setShowHeader}) {
       </div>
       <ul>
         <li className="text-[#A4AAB5] text-[1.2rem]">داشبورد</li>
-        <li>
+        <li className="mt-2 hover:bg-slate-300 rounded px-3 py-1 transition-all">
           <Link href="/admin/dashboard">
-            <span className="font-bold">فروشگاه</span>
+            <span className="font-semibold text-[.9rem] mr-4">فروشگاه</span>
           </Link>
         </li>
-        <li className="text-[#A4AAB5] text-[1.2rem]">صفحات</li>
-        <li>
-          <Link href="/admin/orders">سفارشات</Link>
+        <li className="text-[#A4AAB5] text-[1.2rem] my-2">صفحات</li>
+        <li className="mr-4 text-[.9rem] font-semibold mt-3 hover:bg-slate-300 rounded px-3 py-1 transition-all">
+          <Link href="/admin/orders ">سفارشات</Link>
         </li>
         {/* <li>
               <Link href="/admin/products">Products</Link>
             </li> */}
-        <li>
+        <li className="mr-4 text-[.9rem] font-semibold mt-4 hover:bg-slate-300 rounded px-3 py-1 transition-all">
           <Link href="/admin/users">کاربرام</Link>
         </li>
       </ul>

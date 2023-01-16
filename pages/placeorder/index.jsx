@@ -45,19 +45,19 @@ function index() {
         totalPrice,
       });
       setLoading(false);
-      // console.log(data)
-      dispatch({ type: "CART_CLEAR_ITEMS" });
-      Cookies.set(
-        "cart",
-        JSON.stringify({
-          ...cart,
-          cartItems: [],
-        })
-      );
+      console.log(data)
+      // dispatch({ type: "CART_CLEAR_ITEMS" });
+      // Cookies.set(
+      //   "cart",
+      //   JSON.stringify({
+      //     ...cart,
+      //     cartItems: [],
+      //   })
+      // );
       toast.success("سفارش شما با موفقیت ثبت شد");
-      setTimeout(() => {
-        router.push(`/order/${data._id}`);
-      }, [1000]);
+      // setTimeout(() => {
+      //   router.push(`/order/${data._id}`);
+      // }, [1000]);
     } catch (err) {
       setLoading(false);
       // console.log(err)

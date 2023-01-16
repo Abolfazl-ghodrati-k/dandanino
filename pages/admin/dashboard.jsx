@@ -93,9 +93,9 @@ function AdminDashboardScreen() {
       ) : (
         <div>
           <div className="grid grid-cols-1 md:grid-cols-6">
-            <div className="admincart m-5 p-5 md:col-span-2 hover:bg-slate-100 transition-all duration-500">
+            <div className="admincart m-5 mx-auto w-full p-5 col-span-1 md:col-span-2 hover:bg-slate-300 transition-all duration-500">
               <Link href="/admin/orders">
-                <div className="p-2 rounded w-[45px] flex items-center mb-2 justify-center bg-[#3a3a3a]">
+                <div className="p-2 rounded w-[45px]  flex items-center mb-2 justify-center bg-[#3a3a3a]">
                   <TbCurrencyDollar size={25} color={'gold'}/>
                 </div>
                 <p>فروش</p>
@@ -104,7 +104,7 @@ function AdminDashboardScreen() {
                 </p>
               </Link>
             </div>
-            <div className="admincart m-5 p-5 md:col-span-2 hover:bg-slate-100 transition-all duration-500">
+            <div className="admincart m-5 p-5 w-full mx-auto col-span-1 md:col-span-2 hover:bg-slate-300 transition-all duration-500">
               <Link href="/admin/orders">
                 <div className="p-2 rounded w-[45px] flex items-center mb-2 justify-center bg-[#3a3a3a]">
                   <HiOutlineShoppingCart size={25} color={'gold'}/>
@@ -115,7 +115,7 @@ function AdminDashboardScreen() {
                 </p>
               </Link>
             </div>
-            <div className="admincart m-5 p-5 md:col-span-2 hover:bg-slate-100 transition-all duration-500">
+            <div className="admincart m-5 p-5 w-full col-span-1 mx-auto md:col-span-2 hover:bg-slate-300 transition-all duration-500">
               <Link href="/admin/users ">
                 <div className="p-2 rounded w-[45px] flex items-center justify-center mb-2 bg-[#3a3a3a]">
                   <TbUsers size={25} color={'gold'} />

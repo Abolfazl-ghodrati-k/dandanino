@@ -40,7 +40,7 @@ function Nav() {
               <DropdownLink
                 className="dropdown-link"
                 href="/profile"
-                redirect={router.pathname}
+                redirect={"/"}
               >
                 <span className="w-full"> حساب کاربری</span>
               </DropdownLink>
@@ -67,7 +67,9 @@ function Nav() {
             <Link
               href={{
                 pathname: "/profile",
-                query: { redirect: router.pathname },
+                query: {
+                  redirect: "/",
+                },
               }}
             >
               <span className="flex mt-1 flex-col items-center ml-2 hover:text-[#167495] text-[black] group transition-all duration-5000 cursor-pointer">

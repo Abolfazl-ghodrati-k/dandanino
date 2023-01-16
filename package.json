@@ -16,6 +16,7 @@
     "cloudinary": "^1.30.0",
     "cors": "^2.8.5",
     "formik": "^2.2.9",
+    "jalali-moment": "^3.3.11",
     "js-cookie": "^3.0.1",
     "mongoose": "^6.3.4",
     "next": "13.0.5",

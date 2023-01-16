@@ -44,6 +44,7 @@ export default async function handler(req, res) {
         name: "کاربر" + Math.floor(Math.random() * 1000).toString(),
         username,
         password: "1234",
+        image:'/',
         isAdmin: false,
       },
       function (err, data) {
