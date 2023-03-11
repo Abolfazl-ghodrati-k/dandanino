@@ -11,12 +11,16 @@ import { Store } from "../../utils/Store";
 import PersianNumber from "react-persian-currency/lib/PersianNumber";
 import useDividedPrice from "../../hooks/useDividedPrice";
 import Cookies from "js-cookie";
+import { useSession } from "next-auth/react";
 
 function index() {
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
   const { cartItems, shippingAddress, paymentMethod } = cart;
   const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100;
+
+  const {data: session} = useSession();
+  console.log(session.user)
 
   const itemsPrice = round2(
     cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
@@ -40,24 +44,25 @@ function index() {
         orderItems: cartItems,
         shippingAddress,
         paymentMethod: paymentMethod.title,
+        phoneNumber: '123',
         itemsPrice,
         shippingPrice,
         totalPrice,
       });
       setLoading(false);
       console.log(data)
-      // dispatch({ type: "CART_CLEAR_ITEMS" });
-      // Cookies.set(
-      //   "cart",
-      //   JSON.stringify({
-      //     ...cart,
-      //     cartItems: [],
-      //   })
-      // );
+      dispatch({ type: "CART_CLEAR_ITEMS" });
+      Cookies.set(
+        "cart",
+        JSON.stringify({
+          ...cart,
+          cartItems: [],
+        })
+      );
       toast.success("سفارش شما با موفقیت ثبت شد");
-      // setTimeout(() => {
-      //   router.push(`/order/${data._id}`);
-      // }, [1000]);
+      setTimeout(() => {
+        router.push(`/order/${data._id}`);
+      }, [1000]);
     } catch (err) {
       setLoading(false);
       // console.log(err)

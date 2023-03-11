@@ -21,7 +21,7 @@ function Products({ products }) {
     setOtherProducts(pros);
   }, [products]);
   return (
-    <div className="mt-[6rem] text-[white] max-w-[85%] mx-auto lg:max-w-[80%]">
+    <div className="mt-[6rem] text-[white] max-w-[85%] mx-auto lg:max-w-[1200px]">
       <div className="flex flex-col items-between justify-center md:flex-row md:justify-between md:items-center">
         <div className="title text-right text-[black] my-4">
           <h1 className="text-[gray]">زیبا ترین و بهترین</h1>

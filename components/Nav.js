@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { Profiler, useContext } from "react";
 import Image from "next/dist/client/image";
 import Logo from "../public/Images/Logos/logo.png";
 import Link from "next/link";
@@ -10,13 +10,25 @@ import { Store } from "../utils/Store";
 import { products } from "../utils/data";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
+import { useSession } from "next-auth/react";
 
 function Nav() {
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
 
+  const { data: session } = useSession();
   const router = useRouter();
   console.log(router.pathname);
+
+  const Profiler = () => {
+    if (session?.user && !session?.user?.email) {
+      router.push("/userinfo");
+    } else if (session?.user?.email) {
+      router.push("/admin/dashboard");
+    } else {
+      router.push({ pathname: "/profile", query: { redirect: router.pathname } });
+    }
+  };
 
   if (router.pathname) {
     return (
@@ -25,7 +37,7 @@ function Nav() {
           <Menu.Button className="mt-1">
             <HiOutlineMenu size={30} />
           </Menu.Button>
-          <Menu.Items className="absolute  text-right -right-8 w-[95vw] top-12 z-10 origin-top-right rounded-lg p-1 nav-bg shadow-lg">
+          <Menu.Items className="absolute  text-right -right-8 w-[95vw] top-12 z-10 origin-top-right rounded-lg p-1 bg-[white] mt-2 shadow-lg">
             {/* <Menu.Item>
               <DropdownLink className="dropdown-link" href="/products">
                 <span className="w-full">محصولات</span>
@@ -37,12 +49,16 @@ function Nav() {
               </DropdownLink>
             </Menu.Item>
             <Menu.Item>
-              <DropdownLink
-                className="dropdown-link"
-                href="/profile"
-                redirect={"/"}
-              >
-                <span className="w-full"> حساب کاربری</span>
+              <DropdownLink className="dropdown-link">
+                <span
+                  className="w-full"
+                  onClick={() => {
+                    Profiler();
+                  }}
+                >
+                  {" "}
+                  حساب کاربری
+                </span>
               </DropdownLink>
             </Menu.Item>
           </Menu.Items>
@@ -64,19 +80,13 @@ function Nav() {
         </div>
         <div className="flex  justify-between items-center">
           <span className=" hidden sm:flex">
-            <Link
-              href={{
-                pathname: "/profile",
-                query: {
-                  redirect: "/",
-                },
-              }}
+            <span
+              onClick={() => Profiler()}
+              className="flex mt-1 flex-col items-center ml-2 hover:text-[#167495] text-[black] group transition-all duration-5000 cursor-pointer"
             >
-              <span className="flex mt-1 flex-col items-center ml-2 hover:text-[#167495] text-[black] group transition-all duration-5000 cursor-pointer">
-                <p className="mb-1 text-[.6rem] ms:text-[.7rem]">حساب کاربری</p>
-                <div className="mx-auto h-[1px] bg-[black] w-[0] group-hover:w-full transition-width duration-500"></div>
-              </span>
-            </Link>
+              <p className="mb-1 text-[.6rem] ms:text-[.7rem] md:text-[.9rem]">حساب کاربری</p>
+              <div className="mx-auto h-[1px] bg-[black] w-[0] group-hover:w-full transition-width duration-500"></div>
+            </span>
           </span>
           <Link href={"/cart"}>
             <span className="hover:text-[#167495] cursor-pointer text-[black] transition-all duration-300 flex relative">

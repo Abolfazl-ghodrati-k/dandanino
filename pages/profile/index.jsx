@@ -20,10 +20,10 @@ export default function Login() {
   const pattern = /^[0-9]{11}$/;
 
   useEffect(() => {
-    if (session?.user && !session?.user?.isAdmin) {
+    if (session?.user && !session?.user?.email) {
       router.push("/userinfo");
     }
-    if(session?.user?.isAdmin) {
+    if(session?.user?.email) {
       router.push("/admin/dashboard")
     }
   }, []);

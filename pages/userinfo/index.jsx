@@ -52,17 +52,10 @@ const validate = (values) => {
 
 function index() {
   const router = useRouter();
-  const { state:{cart}, dispatch } = useContext(Store);
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    const error = false;
-    if (!error) {
-      router.push(router.query.redirect);
-    }
-  };
-
-  
+  const {
+    state: { cart },
+    dispatch,
+  } = useContext(Store);
 
   const formik = useFormik({
     initialValues: {
@@ -75,15 +68,11 @@ function index() {
     },
     validate,
 
-    onSubmit: ({
-      firstName,
-      lastName,
-      address,
-      city,
-      postalCode,
-      nationalCode,
-    },{setSubmitting}) => {
-      console.log(city)
+    onSubmit: (
+      { firstName, lastName, address, city, postalCode, nationalCode },
+      { setSubmitting }
+    ) => {
+      console.log(city);
       dispatch({
         type: "SAVE_SHIPPING_ADDRESS",
         payload: {
@@ -109,20 +98,20 @@ function index() {
           },
         })
       );
-      toast.success('اطلاعات شما با موفقیت ثبت شد')
+      toast.success("اطلاعات شما با موفقیت ثبت شد");
       setTimeout(() => {
-        router.push('/')
-      },[1000])
+        router.push("/");
+      }, [1000]);
     },
   });
 
   const LogoutHandler = () => {
-      Cookies.remove('cart');
-      dispatch({ type: 'CART_RESET' });
-      signOut({ callbackUrl: '/' });
-  }
+    signOut({ callbackUrl: "/" });
+    dispatch({ type: "CART_RESET" });
+    Cookies.remove("cart");
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     formik.setValues({
       firstName: cart.shippingAddress.firstName,
       lastName: cart.shippingAddress.lastName,
@@ -130,8 +119,8 @@ function index() {
       postalCode: cart.shippingAddress.postalCode,
       nationalCode: cart.shippingAddress.nationalCode,
       address: cart.shippingAddress.address,
-    })
-  },[cart])
+    });
+  }, [cart]);
 
   return (
     <Layout>
@@ -156,7 +145,12 @@ function index() {
             >
               ذخیره
             </button>
-            <button onClick={()=>{router.push('/')}} className="transition-all mb-1 p-[.4rem] text-[.9rem] sm:w-[100px] sm:mr-2 rounded border border-[gray] border-solid hover:border-[#a59f9f]">
+            <button
+              onClick={() => {
+                router.push("/");
+              }}
+              className="transition-all mb-1 p-[.4rem] text-[.9rem] sm:w-[100px] sm:mr-2 rounded border border-[gray] border-solid hover:border-[#a59f9f]"
+            >
               بستن
             </button>
           </div>
@@ -288,7 +282,10 @@ function index() {
       <div
         className={`max-w-[95vw] mx-auto w-full flex justify-end items-center my-2`}
       >
-        <button onClick={LogoutHandler} className="bg-[red] text-[white] rounded-md hover:rounded hover:bg-[#ff4040] transition-all text-[.9rem] py-1 px-2">
+        <button
+          onClick={LogoutHandler}
+          className="bg-[red] text-[white] rounded-md hover:rounded hover:bg-[#ff4040] transition-all text-[.9rem] py-1 px-2"
+        >
           خروج از حساب کاربری
         </button>
       </div>

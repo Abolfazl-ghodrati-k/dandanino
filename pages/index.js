@@ -6,11 +6,9 @@ import Landing from "./_landing";
 export default function Home({products}) {
   console.log(products)
   return (
-    <div className="min-h-screen">
       <Layout title={"خانه - دندانینو"} home>
         {products ? <Landing products={products}/> : 'loading...'}
       </Layout>
-    </div>
   );
 }
 

@@ -31,8 +31,8 @@ function Specialproduct({ product }) {
   }
 
   return (
-    <div className="h-full flex flex-col items-center justify-start">
-      <div className=" w-[330px] md:w-auto grid place-items-center mt-[2rem] rounded-md bg-white p-1">
+    <div className="h-full flex flex-col items-center justify-start md:px-2 ">
+      <div className=" w-[330px]  md:w-auto grid place-items-center mt-[2rem] rounded-md bg-white p-1">
         <ImageSlider
           Images={Products}
           setActiveNumb={setActiveNumb}
@@ -41,15 +41,17 @@ function Specialproduct({ product }) {
           height={200}
         />
       </div>
-      <div className=" w-full px-[3.1rem] text-black mt-3 text-[.8rem]">
-        <h1>{Products[0].name}</h1>
+      <div className=" w-full text-center text-black mt-5 text-[.8rem]">
+        <h1 className="text-[1.4rem]">{Products[0].name}</h1>
+        <p className="text-[hsla(0,0%,43%,1)] -mt-1 text-[.9rem] mb-2">{Products[0].description}</p>
+        <div className="text-right mr-[9.3rem] mb-[30px]">
         <p>برند : {Products[0].brand}</p>
-        <p>{Products[0].description}</p>
         <p>امتیازات: {Products[0].rating}</p>
         <p>نظرات: {Products[0].numReviews}</p>
-        <div className="flex flex-col items-start mt-4 mb-2 text-[.8rem] [&>*]:w-full w-full md:flex-row md:items-center md:justify-between md:[&>*]:w-[50%]">
+        </div>
+        <div className="flex  mt-4 mb-2 text-[.8rem] mx-auto  w-full flex-row items-center justify-around md:[&>*]:w-[50%]">
           <button
-            className="tirtiary-button mb-2 md:mb-0"
+            className="tirtiary-button mb-5 md:mb-0 md:text-[.6rem] ml:text-[.8rem] max-w-[200px] px-[15px]"
             onClick={() => {
               addToCartHandler(Products[ActiveNumb].slug, Products[ActiveNumb]);
             }}
@@ -57,13 +59,13 @@ function Specialproduct({ product }) {
             افزودن به سبد خرید
           </button>
           <button
-            className="group my-2 md:my-0"
+            className="group my-2 md:my-0 flex items-center justify-center"
             onClick={() => {
               router.push(`/products/${Products[0].slug}`);
             }}
           >
             اطلاعات بیشتر -{" "}
-            <span className="group-hover:mr-0 transition-all -mr-1">&gt;</span>
+            <span className="group-hover:mr-[.1rem] transition-all -mr-[.05rem] mt-[0.0733rem] ">&gt;</span>
           </button>
         </div>
       </div>

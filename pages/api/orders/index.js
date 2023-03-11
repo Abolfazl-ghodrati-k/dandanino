@@ -1,8 +1,6 @@
 import { getSession } from "next-auth/react";
 import Order from "../../../model/Order";
 import db from "../../../database/db";
-import mongoose from "mongoose";
-import moment from "jalali-moment";
 
 const handler = async (req, res) => {
   const session = await getSession({ req });

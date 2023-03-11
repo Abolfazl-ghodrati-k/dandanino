@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Nav from "./Nav";
 import Footer from "./Footer";
+import Scrollbar from "./Scrollbar";
 
 function Layout({ title, children, home }) {
   const [LandNav, setLandNav] = useState(true);
@@ -27,39 +28,41 @@ function Layout({ title, children, home }) {
         <title>{title ? title : "دندانینو"}</title>
         <meta name="description" content="home page" />
       </Head>
-      <div
-        className={`flex ${
-          LandNav ? "" : "max-h-screen"
-        } min-h-screen flex-col justify-between overflow-x-hidden overflow-y-hidden mx-auto`}
-      >
-        <header
-          className={`fixed z-10 ${
-            LandNav
-              ? "rounded-md top-[.5rem] w-[95vw] left-[2.5%] right-[2.5%] sm:w-[97vw] sm:left-[1.5%] sm:right-[1.5%] nav-bg"
-              : "w-full top-0 p-2 bg-white"
-          } flex items-center `}
+      {/* <Scrollbar> */}
+        <div
+          className={`flex  ${
+            LandNav ? "" : "max-h-screen"
+          } min-h-screen flex-col justify-between overflow-hidden mx-auto`}
         >
-          <Nav />
-        </header>
-        <main
-          className={`bg-no-repeat sm:bg-hero overflow-y-scroll  ${
-            LandNav ? "" : "bg-[#ecf0f3]"
-          }`}
-          style={{ minHeight: mainH + "px" }}
-        >
-          <div className={`${LandNav ? "mt-[4rem]" : "mt-[5rem]"}`}>
-            {children}
-          </div>
-        </main>
-        <footer
-          ref={footer}
-          className={`pt-1 border border-t-1 border-l-0 border-r-0 border-b-0 border-zinc-600 border-solid ${
-            LandNav ? "" : "bg-[#F9FAFB]"
-          }`}
-        >
-          <Footer />
-        </footer>
-      </div>
+          <header
+            className={`fixed z-10 ${
+              LandNav
+                ? "rounded-md top-[.5rem] w-[95vw] left-[2.5%] right-[2.5%] sm:w-[97vw] sm:left-[1.5%] sm:right-[1.5%] nav-bg"
+                : "w-full top-0 p-2 bg-white"
+            } flex items-center `}
+          >
+            <Nav />
+          </header>
+          <main
+            className={`bg-no-repeat sm:bg-hero  ${
+              LandNav ? "" : "bg-[#ecf0f3]"
+            }`}
+            style={{ minHeight: mainH + "px" }}
+          >
+            <div className={`${LandNav ? "mt-[4rem]" : "mt-[5rem]"}`}>
+              {children}
+            </div>
+          </main>
+          <footer
+            ref={footer}
+            className={`pt-1 border border-t-1 border-l-0 border-r-0 border-b-0 border-zinc-600 border-solid ${
+              LandNav ? "" : "bg-[#F9FAFB]"
+            }`}
+          >
+            <Footer />
+          </footer>
+        </div>
+      {/* </Scrollbar> */}
     </>
   );
 }

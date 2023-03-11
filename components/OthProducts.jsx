@@ -49,7 +49,7 @@ function OthProducts({ product }) {
           </button>
           <button className="group my-4 md:my-0" onClick={() => {router.push(`/products/${product.slug}`)}}>
             اطلاعات بیشتر -{" "}
-            <span className="group-hover:mr-0 transition-all -mr-1">&gt;</span>
+            <span className="group-hover:mr-[0rem] transition-all  -mr-[.19rem] mt-[0.18rem]">&gt;</span>
           </button>
         </div>
       </div>
