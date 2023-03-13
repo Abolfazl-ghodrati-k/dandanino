@@ -1,5 +1,5 @@
 import Image from "next/image";
-import logo from "../../public/Images/Logos/logo.png";
+import logo from "../../public/Images/Logos/logo-dark.svg";
 import React, { useContext, useEffect, useState } from "react";
 import { BiArrowBack } from "react-icons/bi";
 import { useRouter } from "next/router";
@@ -23,8 +23,8 @@ export default function Login() {
     if (session?.user && !session?.user?.email) {
       router.push("/userinfo");
     }
-    if(session?.user?.email) {
-      router.push("/admin/dashboard")
+    if (session?.user?.email) {
+      router.push("/admin/dashboard");
     }
   }, []);
 
@@ -44,10 +44,8 @@ export default function Login() {
   };
 
   const checkUser = async () => {
-    const {
-      data,
-    } = await axios.post("/api/auth/user", {
-       username,
+    const { data } = await axios.post("/api/auth/user", {
+      username,
     });
     // console.log(data)
     return data;
@@ -73,50 +71,53 @@ export default function Login() {
   };
 
   return (
-    <div className="mt-[3rem] flex flex-col items-center justify-start mx-auto h-full my-auto">
-      <div className="bg-[black] w-full flex justify-center items-center">
-        <Image src={logo} alt="لوگو" width={200} height={200} />
-      </div>
-      <div className="text-center w-full mt-5">
-        <h1 className="text-[1.9rem] font-bold">به دندانینو خوش آمدید</h1>
-        <p className="text-[#6D768A] tracking-tighter">
-          خوش آمدید! لطفا مشخصات خود را وارد کنید
-        </p>
-        <div className="text-right mt-3 px-3 font-medium">
-          <label htmlFor="phonenumber" className="mr-1 mb-3">
-            شماره موبایل
-          </label>
-          <input
-            type="text"
-            className="w-full p-2 text-right text-[.95rem] pr-3 rounded-md text-[gray] focus:outline-none border border-solid border-[gray]"
-            placeholder={"09123456789"}
-            value={username}
-            onChange={(e) => {
-              setusername(e.target.value);
-              seterror((err) => (err = false));
-            }}
-          />
-          {error && (
-            <small className="text-red-400 text-[.8rem] font-semibold mr-2">
-              ریدی دایی جان
-            </small>
-          )}
+    <div className="grid grid-cols-2 max-w-[1400px]">
+      <div className="col-span-2  md:col-span-1  flex flex-col items-center justify-center mx-auto h-full my-auto">
+        <div className=" w-full flex justify-center items-center">
+          <Image src={logo} alt="لوگو" width={200} height={200} />
         </div>
-        <div className="flex flex-col items-center [&>*]:w-full w-full text-center mt-7 px-3">
-          <button
-            onClick={() => getcode()}
-            className="flex w-full justify-center items-center bg-[#41cbc6] rounded-md py-2 text-white cursor-pointer"
-          >
-            {Loading ? (
-              <span className="mx-1">لطفا صبر کنید ...</span>
-            ) : (
-              <>
-                <span className="mx-1">ادامه</span> <BiArrowBack size={15} />
-              </>
+        <div className="text-center w-full mt-5">
+          <h1 className="text-[1.9rem] font-bold">به دندانینو خوش آمدید</h1>
+          <p className="text-[#6D768A] tracking-tighter">
+            خوش آمدید! لطفا مشخصات خود را وارد کنید
+          </p>
+          <div className="text-right mt-3 px-3 font-medium">
+            <label htmlFor="phonenumber" className="mr-1 mb-3">
+              شماره موبایل
+            </label>
+            <input
+              type="text"
+              className="w-full p-2 text-right text-[.95rem] pr-3 rounded-md text-[gray] focus:outline-none border border-solid border-[gray]"
+              placeholder={"09123456789"}
+              value={username}
+              onChange={(e) => {
+                setusername(e.target.value);
+                seterror((err) => (err = false));
+              }}
+            />
+            {error && (
+              <small className="text-red-400 text-[.8rem] font-semibold mr-2">
+                ریدی دایی جان
+              </small>
             )}
-          </button>
+          </div>
+          <div className="flex flex-col items-center [&>*]:w-full w-full text-center mt-7 px-3">
+            <button
+              onClick={() => getcode()}
+              className="flex w-full justify-center items-center bg-[#41cbc6] rounded-md py-2 text-white cursor-pointer"
+            >
+              {Loading ? (
+                <span className="mx-1">لطفا صبر کنید ...</span>
+              ) : (
+                <>
+                  <span className="mx-1">ادامه</span> <BiArrowBack size={15} />
+                </>
+              )}
+            </button>
+          </div>
         </div>
       </div>
+      <div className="hidden md:block min-w-[50%] min-h-screen bg-red-300"></div>
     </div>
   );
 }

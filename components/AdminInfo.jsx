@@ -3,7 +3,6 @@ import { AiOutlineMenu, AiOutlineUser } from "react-icons/ai";
 import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
 
-
 function AdminInfo({ setShowHeader }) {
   const { data: session } = useSession();
   const [ShowMenu, setShowMenu] = useState(false);
@@ -15,6 +14,7 @@ function AdminInfo({ setShowHeader }) {
   return (
     <div className="w-full flex justify-between items-center mb-32">
       <div
+        className="cursor-pointer"
         onClick={() =>
           setShowHeader((showHeader) => (showHeader = !showHeader))
         }

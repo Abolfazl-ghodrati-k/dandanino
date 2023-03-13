@@ -28,8 +28,8 @@ function Comments() {
       modules={[Navigation, Scrollbar, A11y, Controller, Autoplay]}
     >
       {comments.map((item) => (
-        <SwiperSlide>
-          <div key={item} className="flex flex-col items-center justify-between min-h-[233px] gap-[10px] ">
+        <SwiperSlide key={item}>
+          <div className="flex flex-col items-center justify-between min-h-[233px] gap-[10px] ">
             <h1 className="font-black text-[1.4rem] max-w-[80%] text-center mb-[25px]">
               {item.comment}
             </h1>

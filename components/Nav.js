@@ -1,9 +1,8 @@
 import React, { Profiler, useContext } from "react";
 import Image from "next/dist/client/image";
-import Logo from "../public/Images/Logos/logo.png";
+import Logo_dark from "../public/Images/Logos/logo-dark.svg";
 import Link from "next/link";
 import { HiOutlineShoppingBag, HiOutlineMenu } from "react-icons/hi";
-import hero from "../public/Images/europe.svg";
 import { Menu } from "@headlessui/react";
 import DropdownLink from "./DropdownLink";
 import { Store } from "../utils/Store";
@@ -12,7 +11,7 @@ import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import { useSession } from "next-auth/react";
 
-function Nav() {
+function Nav({ onLand }) {
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
 
@@ -25,13 +24,16 @@ function Nav() {
     } else if (session?.user?.email) {
       router.push("/admin/dashboard");
     } else {
-      router.push({ pathname: "/profile", query: { redirect: router.pathname } });
+      router.push({
+        pathname: "/profile",
+        query: { redirect: router.pathname },
+      });
     }
   };
 
   if (router.pathname) {
     return (
-      <div className="flex px-[2rem]  sm:px-[5rem]  justify-between items-center w-full mx-auto p-2">
+      <div className="flex px-[2rem] sm:px-[5rem] justify-between items-center w-full mx-auto p-2">
         <Menu as="div" className="relative inline-block sm:hidden text-right">
           <Menu.Button className="mt-1">
             <HiOutlineMenu size={30} />
@@ -64,7 +66,7 @@ function Nav() {
         </Menu>
         <div className="w-[120px] ms:w-auto">
           <Link href={"/"}>
-            <Image src={Logo} alt="logo" width={150} height={200} />
+              <Image src={Logo_dark} alt="logo" width={150} height={200} />
           </Link>
         </div>
         <div className=" hidden sm:flex ml-auto mr-3 text-[.85rem] ms:mr-[3rem]">
@@ -77,13 +79,15 @@ function Nav() {
             </li>
           </ul>
         </div>
-        <div className="flex  justify-between items-center">
+        <div className="flex justify-between items-center">
           <span className=" hidden sm:flex">
             <span
               onClick={() => Profiler()}
               className="flex mt-1 flex-col items-center ml-2 hover:text-[#4fa6c5] text-[black] group transition-all duration-5000 cursor-pointer"
             >
-              <p className="mb-1 text-[.6rem] ms:text-[.7rem] md:text-[.9rem]">حساب کاربری</p>
+              <p className="mb-1 text-[.6rem] ms:text-[.7rem] md:text-[.9rem]">
+                حساب کاربری
+              </p>
               <div className="mx-auto h-[1px] bg-[black] w-[0] group-hover:w-full transition-width duration-500"></div>
             </span>
           </span>

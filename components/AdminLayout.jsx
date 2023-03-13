@@ -39,7 +39,7 @@ function AdminLayout({ title, children }) {
         <AdminInfo ShowHeader={ShowHeader} setShowHeader={setShowHeader} />
         {children}
       </main>
-      <footer className="col-start-5 row-start-2 absolute bottom-0">
+      <footer className="md:col-start-5 row-start-2 absolute bottom-0">
         تمام حقوق محفوظ است &#169;
       </footer>
     </div>

@@ -29,6 +29,7 @@
     "react-persian-currency": "^1.2.2",
     "react-player": "^2.12.0",
     "react-slider-swiper": "^2.0.6",
+    "react-spinners": "^0.13.8",
     "react-toastify": "^9.0.1",
     "swiper": "^9.1.0"
   },

@@ -10,12 +10,12 @@ import { toast } from "react-toastify";
 
 function Hero({ products }) {
   const { state, dispatch } = useContext(Store);
-  const product = products.find((x) => x.slug === "Fairywill-F30");
+  const product = products.find((x) => x.slug === "Fairywill-5020E");
   const router = useRouter();
 
   const addToCartHandler = () => {
     const existItem = state.cart.cartItems.find(
-      (x) => x.slug === "Fairywill-F30"
+      (x) => x.slug === "Fairywill-5020E"
     );
     const quantity = existItem ? existItem.quantity + 1 : 1;
     if (product.countInStock < quantity) {
@@ -56,7 +56,7 @@ function Hero({ products }) {
             <button
               className="text-[.8rem] md:text-[1.1rem] justify-between items-center hidden sm:flex flex-row-reverse group transition-all"
               onClick={() => {
-                router.push("/products/Fairywill-F30");
+                router.push("/products/Fairywill-5020E");
               }}
             >
               <IoIosArrowBack size={20} />

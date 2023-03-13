@@ -50,7 +50,7 @@ export default function Cart() {
 
   return (
     <Layout title={"سبد خرید"}>
-      <div className="flex flex-col items-end max-w-[95vw] mx-auto">
+      <div className="flex flex-col items-end max-w-[95vw] mx-auto min-h-[80vh] ">
         <div className="mt-2 w-full flex flex-col sm:flex-row justify-start items-center">
           {cartItems.length === 0 ? (
             <div className="w-full h-full flex flex-col items-center justify-start mt-[6rem] ">
@@ -67,14 +67,14 @@ export default function Cart() {
             </div>
           ) : (
             <>
-              <div className="w-full sm:w-[64%] flex flex-col items-start justify-start max-h-[440px] overflow-y-hidden bg-[white] text-right shadow-sm rounded-md shadow-[gray] pt-2">
+              <div className="w-full sm:w-[64%] flex flex-col items-start justify-start max-h-[440px] overflow-x-hidden bg-[white] text-right shadow-sm rounded-md shadow-[gray] pt-2">
                 {" "}
                 <h4 className="text-[.9rem] pr-2">سبد خرید شما</h4>
                 <small className="flex flex-row-reverse justify-start pr-2 items-center mt-1 text-[gray] text-[.7rem]">
                   <span className="mr-1">مورد</span>
                   {cartItems.length > 0 && cartItems.length}
                 </small>
-                <div className="w-full mt-2 pb-1 flex flex-col items-center justify-start  overflow-scroll ">
+                <div className="w-full mt-2 pb-1 flex flex-col items-center justify-start min-h-full scrollbar ">
                   {cartItems &&
                     cartItems.map((cart, index) => {
                       var lastItem = false;

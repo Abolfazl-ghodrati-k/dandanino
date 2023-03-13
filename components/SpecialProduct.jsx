@@ -65,11 +65,11 @@ function Specialproduct({ product }) {
           <button
             className="group my-2 md:my-0 flex items-center justify-center"
             onClick={() => {
-              router.push(`/products/${Products[0].slug}`);
+              router.push(`/products/${Products[ActiveNumb].slug}`);
             }}
           >
-            اطلاعات بیشتر -{" "}
-            <span className="group-hover:mr-[.1rem] transition-all -mr-[.05rem] mt-[0.0733rem] ">
+            اطلاعات بیشتر {" "}
+            <span className="group-hover:mr-2 mr-1 mt-1 transition-all  ">
               &gt;
             </span>
           </button>

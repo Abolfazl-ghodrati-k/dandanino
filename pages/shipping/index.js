@@ -22,10 +22,11 @@ function ShippingScreen() {
   const { shippingAddress } = cart;
 
   useEffect(() => {
+    console.log(errors)
     if (session?.user) {
       setValue("firstName", shippingAddress.firstName);
       setValue("lastName", shippingAddress.lastName);
-      setValue("melliCode", shippingAddress.melliCode);
+      setValue("nationalCode", shippingAddress.nationalCode);
       setValue("address", shippingAddress.address);
       setValue("city", shippingAddress.city);
       setValue("postalCode", shippingAddress.postalCode);
@@ -42,7 +43,7 @@ function ShippingScreen() {
     postalCode,
     nationalCode,
   }) => {
-    // console.log("melliCode")
+    console.log("melliCode")
     dispatch({
       type: "SAVE_SHIPPING_ADDRESS",
       payload: { firstName, lastName, nationalCode, address, city, postalCode },
@@ -68,7 +69,7 @@ function ShippingScreen() {
   return (
     <Layout title={"صفحه خرید"}>
       <CheckoutWizard activeStep={1} />
-      <form className="w-full flex flex-col items-end">
+      <form className="w-full flex flex-col items-end min-h-screen bg-[#ecf0f3]">
         <div className="flex w-full items-center justify-start mr-1">
           <label>نام : </label>
           <div className="flex flex-col items-end mr-auto">
@@ -115,7 +116,10 @@ function ShippingScreen() {
               className="mr-auto ml-2 w-[250px]"
               {...register("nationalCode", {
                 required: "لطفا کد ملی خود را وارد کنید",
-                minLength: 10,
+                minLength: {
+                  value: 10,
+                  message: "کد ملی را به فرمت صحیح وارد کنید",
+                },
               })}
             />
             {errors.nationalCode && (

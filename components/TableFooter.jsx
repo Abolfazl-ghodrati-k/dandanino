@@ -13,8 +13,8 @@ const TableFooter = ({ range, setPage, page, slice }) => {
       {range.map((el, index) => (
         <button
           key={index}
-          className={` ${
-            page === el ? 'stylesactiveButton' : 'stylesinactiveButton'
+          className={`mt-4 mr-2 border border-black p-3 text-[.8rem] rounded-md bg-[#0f0fd8] ${
+            page === el ? 'border border-black p-3 text-[1rem] bg-[#0f0fd8] text-[white]' : 'hover:bg-[#2828eb]'
           }`}
           onClick={() => setPage(el)}
         >

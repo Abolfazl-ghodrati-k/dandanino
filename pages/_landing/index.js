@@ -6,13 +6,20 @@ import Options from "../../components/Options";
 import Customers from "../../components/Customers";
 import BetterThanUs from "../../components/BetterThanUs";
 import Comments from "../../components/Comments";
+import { useRouter } from "next/router";
 
 export default function Landing({ products }) {
   const [playerReady, setplayerReady] = useState(false);
+  const router = useRouter();
   // console.log(products)
   useEffect(() => {
     setplayerReady(true);
   }, []);
+  useEffect(() => {
+    if (router.query?.id) {
+      router.push(`/#${router.query?.id}`);
+    }
+  });
   return (
     <div className="w-full">
       <Hero products={products} />
@@ -20,16 +27,13 @@ export default function Landing({ products }) {
       <Customers />
 
       {playerReady && (
-        <div className="w-full bg-[#E3E5E8] py-[7rem]">
+        <div className="player-wrapper">
           <ReactPlayer
             url="/Images/Gallery/video.mp4"
             controls={true}
-            style={{
-              display: "grid",
-              placeItems: "center",
-              margin: "0 auto",
-              width: "800px !important",
-            }}
+            width="100%"
+            height="100%"
+            className="react-player"
           />
         </div>
       )}

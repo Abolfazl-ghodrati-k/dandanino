@@ -4,10 +4,12 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 import { IoIosArrowBack } from "react-icons/io";
 import { toast } from "react-toastify";
 import { Store } from "../utils/Store";
+import { useRouter } from "next/router";
 
 function BetterThanUs({products}) {
   const { state, dispatch } = useContext(Store);
   const [product, setproduct] = useState(null)
+  const router = useRouter()
 
   useEffect(() => {
     products.map((product) => {
@@ -73,7 +75,7 @@ function BetterThanUs({products}) {
               <HiOutlineShoppingBag size={20} />
               افزودن به سبد خرید
             </button>
-            <p className="flex text-right items-center justify-between gap-2 p-2 px-3 text-white text-[.9rem]  hover:gap-3 ">
+            <p onClick={() => router.push(`/products/${product.slug}`)} className="flex text-right items-center justify-between gap-2 p-2 px-3 text-white text-[.9rem]  hover:gap-3 ">
               <span>اطلاعات بیشتر</span>
               <IoIosArrowBack size={20} />
             </p>

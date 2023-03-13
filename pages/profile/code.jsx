@@ -4,6 +4,7 @@ import { BiArrowBack } from "react-icons/bi";
 import { Store } from "../../utils/Store";
 import { signIn, signOut, useSession } from "next-auth/react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 function code() {
   const [loading, setloading] = useState(false);
@@ -58,6 +59,7 @@ function code() {
             username: user.username,
             callbackUrl: router.query.redirect || "/",
           });
+          toast.success('با موفقیت وارد شدید')
           setloading((loading) => (loading = false));
         } catch (error) {
           console.log(error);

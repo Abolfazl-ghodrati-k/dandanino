@@ -48,9 +48,9 @@ function OthProducts({ product }) {
           >
             افزودن به سبد خرید
           </button>
-          <button className="group my-4 md:my-0" onClick={() => {router.push(`/products/${product.slug}`)}}>
-            اطلاعات بیشتر -{" "}
-            <span className="group-hover:mr-[0rem] transition-all  -mr-[.19rem] mt-[0.18rem]">&gt;</span>
+          <button className="group my-4 md:my-0" onClick={() => {router.push({pathname:`/products/${product.slug}`, query:{id: 'products'}})}}>
+            اطلاعات بیشتر {" "}
+            <span className="group-hover:mr-2 transition-all mt-1 mr-1">&gt;</span>
           </button>
         </div>
       </div>

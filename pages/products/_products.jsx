@@ -21,16 +21,16 @@ function Products({ products }) {
     setOtherProducts(pros);
   }, [products]);
   return (
-    <div className="text-[white] max-w-[85%] mx-auto lg:max-w-[1200px]">
+    <div className="text-[white] max-w-[85%] mx-auto lg:max-w-[1200px]" id="products">
       <div className="flex flex-col items-between justify-center md:flex-row md:justify-between md:items-center">
         <div className="title text-right text-[black] my-4">
           <h1 className="text-[gray] mb-2">زیبا ترین و بهترین</h1>
           <p className="text-[1.8rem]">محصولات را انتخاب کنید</p>
         </div>
-        <div className="text-[black] mr-auto p-2 cursor-pointer rounded-md text-[0.7rem] flex gap-3 hover:bg-slate-200 justify-end mb-5">
+        <a download={true} href="/Catalogue.pdf" className="text-[black] mr-auto p-2 cursor-pointer rounded-md text-[0.7rem] flex gap-3 hover:bg-slate-200 justify-end mb-5">
           <span>دانلود کاتالوگ</span>
           <GrCloudDownload size={20}/>
-        </div>
+        </a>
       </div>
       {Product1 ? (
         <div className="grid grid-cols-12 h-full gap-4">

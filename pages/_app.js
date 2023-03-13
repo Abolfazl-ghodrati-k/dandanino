@@ -5,26 +5,52 @@ import { useRouter } from "next/router";
 import { ToastContainer } from "react-toastify";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
+import { useState, useEffect } from "react";
+import Loading from "../components/Loading";
 
 axios.defaults.baseURL = "http://localhost:3000";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+  const router = useRouter();
+
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const handleStart = (url) => url !== router.asPath && setLoading(true);
+    const handleComplete = (url) => url === router.asPath && setLoading(false);
+
+    router.events.on("routeChangeStart", handleStart);
+    router.events.on("routeChangeComplete", handleComplete);
+    router.events.on("routeChangeError", handleComplete);
+
+    return () => {
+      router.events.off("routeChangeStart", handleStart);
+      router.events.off("routeChangeComplete", handleComplete);
+      router.events.off("routeChangeError", handleComplete);
+    };
+  });
+
   return (
     <SessionProvider session={session}>
-      <StoreProvider>
-        {Component.auth ? (
-          <Auth adminOnly={Component.auth.adminOnly}>
-            <ToastContainer position="bottom-center" limit={5} />
-            <Component {...pageProps} />
-          </Auth>
-        ) : (
-          <>
-            <ToastContainer position="bottom-center" limit={5} />
-            <Component {...pageProps} />
-          </>
-        )}
-      </StoreProvider>
+      
+        <StoreProvider>
+          {Component.auth ? (
+            <Auth adminOnly={Component.auth.adminOnly}>
+              <ToastContainer
+                position="bottom-center"
+                limit={5}
+                style={{ fontSize: "10px" }}
+              />
+              <Component {...pageProps} />
+            </Auth>
+          ) : (
+            <>
+              <ToastContainer position="bottom-center" limit={5} />
+              <Component {...pageProps} />
+            </>
+          )}
+        </StoreProvider>
     </SessionProvider>
   );
 }
@@ -45,9 +71,7 @@ function Auth({ children, adminOnly }) {
     );
   }
   if (adminOnly && !session.user.email) {
-    router.push(
-      `/unauthorized?message=${session.user.isAdmin}`
-    );
+    router.push(`/unauthorized?message=${session.user.isAdmin}`);
   }
   return <>{children}</>;
 }
