@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 import { Store } from "../utils/Store";
 import ImageSlider from "./ImageSlider";
+import { toast } from "react-toastify";
 
 function Specialproduct({ product }) {
   const { state, dispatch } = useContext(Store);
@@ -14,7 +15,6 @@ function Specialproduct({ product }) {
   }, [product]);
 
   const router = useRouter();
-
   const addToCartHandler = (slug, Selectedproduct) => {
     const existItem = state.cart.cartItems.find((x) => x.slug === slug);
     const quantity = existItem ? existItem.quantity + 1 : 1;
@@ -25,7 +25,9 @@ function Specialproduct({ product }) {
       type: "CART_ADD_ITEM",
       payload: { ...Selectedproduct, quantity: quantity },
     });
+    toast.success(`محصول ${slug} به سبد خرید افزوده شد.`)
   };
+
   if (!Products.length) {
     return <div>loading...</div>;
   }
@@ -43,13 +45,15 @@ function Specialproduct({ product }) {
       </div>
       <div className=" w-full text-center text-black mt-5 text-[.8rem]">
         <h1 className="text-[1.4rem]">{Products[0].name}</h1>
-        <p className="text-[hsla(0,0%,43%,1)] -mt-1 text-[.9rem] mb-2">{Products[0].description}</p>
+        <p className="text-[hsla(0,0%,43%,1)] -mt-1 text-[.9rem] mb-2">
+          {Products[0].description}
+        </p>
         <div className="text-right mr-[9.3rem] mb-[30px]">
-        <p>برند : {Products[0].brand}</p>
-        <p>امتیازات: {Products[0].rating}</p>
-        <p>نظرات: {Products[0].numReviews}</p>
+          <p>برند : {Products[0].brand}</p>
+          <p>امتیازات: {Products[0].rating}</p>
+          <p>نظرات: {Products[0].numReviews}</p>
         </div>
-        <div className="flex  mt-4 mb-2 text-[.8rem] mx-auto  w-full flex-row items-center justify-around md:[&>*]:w-[50%]">
+        <div className="flex  mt-4 mb-6 text-[.8rem] mx-auto  w-full flex-row items-center justify-around md:[&>*]:w-[50%]">
           <button
             className="tirtiary-button mb-5 md:mb-0 md:text-[.6rem] ml:text-[.8rem] max-w-[200px] px-[15px]"
             onClick={() => {
@@ -65,7 +69,9 @@ function Specialproduct({ product }) {
             }}
           >
             اطلاعات بیشتر -{" "}
-            <span className="group-hover:mr-[.1rem] transition-all -mr-[.05rem] mt-[0.0733rem] ">&gt;</span>
+            <span className="group-hover:mr-[.1rem] transition-all -mr-[.05rem] mt-[0.0733rem] ">
+              &gt;
+            </span>
           </button>
         </div>
       </div>

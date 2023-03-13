@@ -18,7 +18,6 @@ function Nav() {
 
   const { data: session } = useSession();
   const router = useRouter();
-  console.log(router.pathname);
 
   const Profiler = () => {
     if (session?.user && !session?.user?.email) {
@@ -73,7 +72,7 @@ function Nav() {
             {/* <li className="hover:text-[#167495] text-[black] transition-all">
               <Link href={"/products"}>محصولات</Link>
             </li> */}
-            <li className="hover:text-[#167495] text-[black] transition-all">
+            <li className="hover:text-[#4fa6c5] text-[black] transition-all">
               <Link href={"/contact-us"}>تماس با ما</Link>
             </li>
           </ul>
@@ -82,7 +81,7 @@ function Nav() {
           <span className=" hidden sm:flex">
             <span
               onClick={() => Profiler()}
-              className="flex mt-1 flex-col items-center ml-2 hover:text-[#167495] text-[black] group transition-all duration-5000 cursor-pointer"
+              className="flex mt-1 flex-col items-center ml-2 hover:text-[#4fa6c5] text-[black] group transition-all duration-5000 cursor-pointer"
             >
               <p className="mb-1 text-[.6rem] ms:text-[.7rem] md:text-[.9rem]">حساب کاربری</p>
               <div className="mx-auto h-[1px] bg-[black] w-[0] group-hover:w-full transition-width duration-500"></div>

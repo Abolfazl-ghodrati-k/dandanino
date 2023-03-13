@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Store } from "../utils/Store";
 import { useContext } from "react";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 function OthProducts({ product }) {
   const { state, dispatch } = useContext(Store);
@@ -20,8 +21,8 @@ function OthProducts({ product }) {
       type: "CART_ADD_ITEM",
       payload: { ...product, quantity: quantity },
     });
+    toast.success(`محصول ${slug} به سبد خرید افزوده شد.`)
   };
-  console.log(state);
   return (
     <div className=" flex flex-col items-center justify-start  md:flex-row md:items-center md:justify-start gap-6 mt-3 md:mt-0 md:px-4 md:pr-7">
       <div className="bg-[white] grid place-items-center w-[330px] md:w-auto p-1 rounded-md my-auto">

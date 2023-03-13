@@ -15,12 +15,12 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
       <StoreProvider>
         {Component.auth ? (
           <Auth adminOnly={Component.auth.adminOnly}>
-            <ToastContainer position="bottom-center" limit={1} />
+            <ToastContainer position="bottom-center" limit={5} />
             <Component {...pageProps} />
           </Auth>
         ) : (
           <>
-            <ToastContainer position="bottom-center" limit={1} />
+            <ToastContainer position="bottom-center" limit={5} />
             <Component {...pageProps} />
           </>
         )}

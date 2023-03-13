@@ -3,7 +3,7 @@ import Option from "./Option";
 
 function Options() {
   return (
-    <div className="flex flex-col justify-between items-start [&>*]:mb-[2rem] p-[2rem] md:flex-row md:justify-between md:items-center md:p-[4.5rem] ml:mt-[4rem] bg-gradient-to-r to-[#333939] from-[#58605f]">
+    <div className="flex flex-col justify-between items-start [&>*]:mb-[2rem] md:[&>*]:mb-[0px] p-[2rem] md:flex-row md:justify-between md:items-center md:p-[4.5rem] ml:mt-[4rem] bg-gradient-to-r to-[#333939] from-[#58605f]">
       <Option
         src={"/Images/europe.svg"}
         title={"دارای تاییدیه اتحادیه اروپا"}

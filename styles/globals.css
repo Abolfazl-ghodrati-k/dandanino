@@ -6,23 +6,23 @@
 
 @layer utilities {
   .scrollbar::-webkit-scrollbar {
-    width: 20px;
+    margin: 1rem 0;
+    width: 5px;
     height: 20px;
   }
 
   .scrollbar::-webkit-scrollbar-track {
     border-radius: 100vh;
-    background: #f7f4ed;
+    background: rgba(155, 155, 155, 0.37);
   }
 
   .scrollbar::-webkit-scrollbar-thumb {
-    background: #e0cbcb;
+    background: #0d032b;
     border-radius: 100vh;
-    border: 3px solid #f6f7ed;
   }
 
   .scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #c0a0b9;
+    background: #220b50;
   }
 }
 
@@ -39,11 +39,6 @@ a {
 
 * {
   box-sizing: border-box;
-}
-
-#__next::-webkit-scrollbar {
-	width: 6px;
-	background-color: #F5F5F5;
 }
 
 .nav-bg {
@@ -95,11 +90,15 @@ span {
   @apply mb-5  rounded-lg border border-gray-200  shadow-md;
 }
 .admincart {
-  @apply cart bg-[white]
+  @apply cart bg-[white];
 }
 
-.tirtiary-button{
-  @apply p-1 py-2 rounded-lg bg-[#3a9e9b] shadow-md shadow-[#35928F] hover:shadow-none hover:bg-[#35928F] text-[white] transition-shadow duration-300
+.tirtiary-button {
+  @apply p-1 py-2 rounded-lg bg-[#3a9e9b] shadow-md shadow-[#35928F] hover:shadow-none hover:bg-[#35928F] text-[white] transition-shadow duration-300;
+}
+
+.tertiary-button {
+  @apply py-2 rounded-lg  bg-[#3a9e9b] shadow-md shadow-[#35928F] hover:shadow-none hover:bg-[#35928F]  flex items-center justify-between gap-1 px-4 text-[white] transition-shadow duration-300;
 }
 
 .primary-button {
@@ -131,15 +130,11 @@ html {
   box-sizing: border-box;
 }
 
-
 .radiogroup {
   border-radius: 16px;
   background: #ecf0f3;
-  box-shadow:
-    4px 4px 4px 0px #d1d9e6 inset,
-    -4px -4px 4px 0px #ffffff inset;
+  box-shadow: 4px 4px 4px 0px #d1d9e6 inset, -4px -4px 4px 0px #ffffff inset;
 }
-
 
 .wrapper {
   margin: 8px 0;
@@ -162,8 +157,8 @@ html {
 
 .text {
   margin-left: 16px;
-  opacity: .6;
-  transition: opacity .2s linear, transform .2s ease-out;
+  opacity: 0.6;
+  transition: opacity 0.2s linear, transform 0.2s ease-out;
 }
 
 .indicator {
@@ -171,15 +166,13 @@ html {
   border-radius: 50%;
   height: 30px;
   width: 30px;
-  box-shadow:
-    -8px -4px 8px 0px #ffffff,
-    8px 4px 12px 0px #d1d9e6;
+  box-shadow: -8px -4px 8px 0px #ffffff, 8px 4px 12px 0px #d1d9e6;
   overflow: hidden;
 }
 
 .indicator::before,
 .indicator::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 10%;
   left: 10%;
@@ -189,16 +182,12 @@ html {
 }
 
 .indicator::before {
-  box-shadow:
-    -4px -2px 4px 0px #d1d9e6,
-    4px 2px 8px 0px #fff;
+  box-shadow: -4px -2px 4px 0px #d1d9e6, 4px 2px 8px 0px #fff;
 }
 
 .indicator::after {
   background-color: #ecf0f3;
-  box-shadow:
-    -4px -2px 4px 0px #fff,
-    4px 2px 8px 0px #d1d9e6;
+  box-shadow: -4px -2px 4px 0px #fff, 4px 2px 8px 0px #d1d9e6;
   transform: scale3d(1, 1, 1);
-  transition: opacity .25s ease-in-out, transform .25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
 }

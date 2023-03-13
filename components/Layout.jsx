@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Nav from "./Nav";
 import Footer from "./Footer";
-import Scrollbar from "./Scrollbar";
 
 function Layout({ title, children, home }) {
   const [LandNav, setLandNav] = useState(true);
@@ -22,6 +21,7 @@ function Layout({ title, children, home }) {
       setmainH((mh) => (mh = mainH));
     }
   }, [router.pathname, mainH]);
+
   return (
     <>
       <Head>
@@ -31,8 +31,8 @@ function Layout({ title, children, home }) {
       {/* <Scrollbar> */}
         <div
           className={`flex  ${
-            LandNav ? "" : "max-h-screen"
-          } min-h-screen flex-col justify-between overflow-hidden mx-auto`}
+            LandNav ? "" : ""
+          }  max-h-screen min-h-screen flex-col justify-between mx-auto overflow-y-scroll scrollbar`}
         >
           <header
             className={`fixed z-10 ${
@@ -55,9 +55,7 @@ function Layout({ title, children, home }) {
           </main>
           <footer
             ref={footer}
-            className={`pt-1 border border-t-1 border-l-0 border-r-0 border-b-0 border-zinc-600 border-solid ${
-              LandNav ? "" : "bg-[#F9FAFB]"
-            }`}
+            className={``}
           >
             <Footer />
           </footer>

@@ -5,14 +5,13 @@ import { HiOutlineShoppingBag, HiOutlineMenu } from "react-icons/hi";
 import { IoIosArrowBack } from "react-icons/io";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { Store } from "../utils/Store";
-import Link from "next/link";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 function Hero({ products }) {
   const { state, dispatch } = useContext(Store);
   const product = products.find((x) => x.slug === "Fairywill-F30");
   const router = useRouter();
-
 
   const addToCartHandler = () => {
     const existItem = state.cart.cartItems.find(
@@ -27,6 +26,7 @@ function Hero({ products }) {
       type: "CART_ADD_ITEM",
       payload: { ...product, quantity: quantity },
     });
+    toast.success(`محصول Fairywill-F30 به سبد خرید افزوده شد.`);
   };
 
   return (
@@ -40,20 +40,25 @@ function Hero({ products }) {
           زیبا&zwnj;تر از همیشه
         </h2>
         <p className="w-full text-right mt-7 text-[0.6rem] md:text-[1rem] max-w-[45%] md:max-w-[40%] ml-auto text-[#98a2b3] ">
-         با واتر جت دندانینو زیباترین لبخند را خواهید داشت، سبک ،کارا ،قیمت مناسب، تحویل سریع از مزایای واتر جت ماست. کلا خیلی واتر جت خوبیم و این چیزا، و واقعا خیلی پیگیری که داری این متنو میخونی بخر تمومش کن.
+          با واتر جت دندانینو زیباترین لبخند را خواهید داشت، سبک ،کارا ،قیمت
+          مناسب، تحویل سریع از مزایای واتر جت ماست. کلا خیلی واتر جت خوبیم و این
+          چیزا، و واقعا خیلی پیگیری که داری این متنو میخونی بخر تمومش کن.
         </p>
         <div className="w-[45%] flex-col items-end justify-start ml-auto my-4 mt-7">
           <div className="flex justify-start items-center w-full">
-            <Link href="/cart">
-              <button
-                onClick={addToCartHandler}
-                className="text-[.6rem] md:text-[.7rem]   p-3 px-5 rounded-lg bg-[#3a9e9b] shadow-md shadow-[#35928F] hover:shadow-none hover:bg-[#35928F] text-[white] transition-shadow duration-300  flex justify-center items-center  sm:ml-[2rem] lg:ml-[4rem]"
-              >
-                <HiOutlineShoppingBag size={20} />
-                <span className="mx-2 mt-1">افزودن به سبد خرید</span>
-              </button>
-            </Link>
-            <button className="text-[.8rem] md:text-[1.1rem] justify-between items-center hidden sm:flex flex-row-reverse group transition-all" onClick={()=> {router.push('/products/Fairywill-F30')}}>
+            <button
+              onClick={addToCartHandler}
+              className="text-[.6rem] md:text-[.7rem]   p-3 px-5 rounded-lg bg-[#3a9e9b] shadow-md shadow-[#35928F] hover:shadow-none hover:bg-[#35928F] text-[white] transition-shadow duration-300  flex justify-center items-center  sm:ml-[2rem] lg:ml-[4rem]"
+            >
+              <HiOutlineShoppingBag size={20} />
+              <span className="mx-2 mt-1">افزودن به سبد خرید</span>
+            </button>
+            <button
+              className="text-[.8rem] md:text-[1.1rem] justify-between items-center hidden sm:flex flex-row-reverse group transition-all"
+              onClick={() => {
+                router.push("/products/Fairywill-F30");
+              }}
+            >
               <IoIosArrowBack size={20} />
               <span className="ml-2 group-hover:ml-4">اطلاعات بیشتر</span>
             </button>
