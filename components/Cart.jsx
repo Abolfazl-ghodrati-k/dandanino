@@ -3,14 +3,14 @@ import Image from "next/image";
 import React, { useContext, useEffect, useState } from "react";
 import { AiOutlinePlus, AiOutlineDelete, AiOutlineMinus } from "react-icons/ai";
 import { PersianNumber } from "react-persian-currency";
-import useDividedPrice from "../../hooks/useDividedPrice";
-import { Store } from "../../utils/Store";
+import useDividedPrice from "../hooks/useDividedPrice";
+import { Store } from "../utils/Store";
 
 export default function Card({ cart, lastItem, firstItem }) {
   const { state, dispatch } = useContext(Store);
 
-  const FinalString = useDividedPrice(cart.quantity * cart.price);
-  const unitPrice = useDividedPrice(cart.price);
+  const FinalString = useDividedPrice(cart?.quantity * cart?.price);
+  const unitPrice = useDividedPrice(cart?.price);
 
   useEffect(() => {
     Cookies.set(
@@ -27,7 +27,7 @@ export default function Card({ cart, lastItem, firstItem }) {
     dispatch({ type: "CART_REMOVE_ITEM", payload: item });
   };
   const IncreaseQua = (item) => {
-    const cartQuantity = cart.quantity;
+    const cartQuantity = cart?.quantity;
     dispatch({
       type: "CART_ADD_ITEM",
       payload: { ...item, quantity: cartQuantity + 1 },
@@ -42,7 +42,7 @@ export default function Card({ cart, lastItem, firstItem }) {
     // );
   };
   const decreaseQua = (item) => {
-    const cartQuantity = cart.quantity;
+    const cartQuantity = cart?.quantity;
     dispatch({
       type: "CART_ADD_ITEM",
       payload: { ...item, quantity: cartQuantity - 1 },
@@ -69,11 +69,11 @@ export default function Card({ cart, lastItem, firstItem }) {
       <div className="w-full flex justify-start text-right items-center">
         <div className="flex max-w-[150px] skh:max-w-[220px] mt-2 flex-col items-center justify-between ml-4">
           <div>
-            <Image src={cart.image} alt="محصول" width={180} height={120} />
+            <Image src={cart?.image} alt="محصول" width={180} height={120} />
           </div>
           <div className="border max-w-[130px] rounded-lg mt-3 border-gray flex flex-row-reverse justify-between items-center p-2 w-full">
             <div className="flex justify-center items-center">
-              {cart.quantity == 1 ? (
+              {cart?.quantity == 1 ? (
                 <span
                   className="hover:bg-slate-300 rounded p-1 transition-all cursor-pointer"
                   onClick={() => removeItemHandler(cart)}
@@ -90,7 +90,7 @@ export default function Card({ cart, lastItem, firstItem }) {
               )}
             </div>
             <div className="mt-1">
-              <PersianNumber>{cart.quantity}</PersianNumber>
+              <PersianNumber>{cart?.quantity}</PersianNumber>
             </div>
             <div
               className="hover:bg-slate-300 rounded p-1 transition-all cursor-pointer"

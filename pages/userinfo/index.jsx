@@ -50,7 +50,7 @@ const validate = (values) => {
   return errors;
 };
 
-function index() {
+function UserInfo() {
   const router = useRouter();
   const {
     state: { cart },
@@ -309,6 +309,6 @@ function index() {
   );
 }
 
-index.auth = true;
+UserInfo.auth = true;
 
-export default index;
+export default UserInfo;

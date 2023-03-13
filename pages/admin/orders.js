@@ -9,9 +9,9 @@ import useDividedPrice from "../../hooks/useDividedPrice";
 import moment from "jalali-moment";
 import TableFooter from "../../components/TableFooter";
 import useTable from "../../hooks/useTable";
-import {TiTimes} from 'react-icons/ti'
+import { TiTimes } from "react-icons/ti";
 import { useRouter } from "next/router";
-
+import DividePrice from "../../components/DividePrice";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -26,7 +26,7 @@ function reducer(state, action) {
   }
 }
 
-export default function AdminOrderScreen({rowsPerPage= 6}) {
+export default function AdminOrderScreen({ rowsPerPage = 6 }) {
   const [page, setPage] = useState(1);
 
   const [{ loading, error, orders }, dispatch] = useReducer(reducer, {
@@ -35,7 +35,6 @@ export default function AdminOrderScreen({rowsPerPage= 6}) {
     error: "",
   });
 
-  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -49,9 +48,9 @@ export default function AdminOrderScreen({rowsPerPage= 6}) {
     };
     fetchData();
   }, []);
-  const { slice, range } = useTable(orders, page, rowsPerPage)
+  const { slice, range } = useTable(orders, page, rowsPerPage);
 
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <AdminLayout title={"سفارشات - واریزی"}>
@@ -86,22 +85,42 @@ export default function AdminOrderScreen({rowsPerPage= 6}) {
                   </td>
                   <td className="p-5">
                     <PersianNumber>
-                      {moment(order.createdAt,'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')}
+                      {moment(order.createdAt, "YYYY/MM/DD")
+                        .locale("fa")
+                        .format("YYYY/MM/DD")}
                     </PersianNumber>
                   </td>
-                  <td className="p-5"><PersianNumber>{useDividedPrice(order.totalPrice)}</PersianNumber></td>
-                  <td className="">
-                    {order.isPaid
-                      ? `${order.paidAt.substring(0, 10)}`
-                      : <span className="text-[.9rem] bg-[red] rounded grid place-items-center mx-auto w-[30%] p-1 pl-[.3rem]"><TiTimes /></span>}
+                  <td className="p-5">
+                    <PersianNumber>
+                      <DividePrice>{order.totalPrice}</DividePrice>
+                    </PersianNumber>
                   </td>
                   <td className="">
-                    {order.isDelivered
-                      ? `${order.deliveredAt.substring(0, 10)}`
-                      : <span className="text-[.9rem] bg-[red] rounded grid place-items-center mx-auto w-[30%] p-1 pl-[.3rem]"><TiTimes /></span>}
+                    {order.isPaid ? (
+                      `${order.paidAt.substring(0, 10)}`
+                    ) : (
+                      <span className="text-[.9rem] bg-[red] rounded grid place-items-center mx-auto w-[30%] p-1 pl-[.3rem]">
+                        <TiTimes />
+                      </span>
+                    )}
+                  </td>
+                  <td className="">
+                    {order.isDelivered ? (
+                      `${order.deliveredAt.substring(0, 10)}`
+                    ) : (
+                      <span className="text-[.9rem] bg-[red] rounded grid place-items-center mx-auto w-[30%] p-1 pl-[.3rem]">
+                        <TiTimes />
+                      </span>
+                    )}
                   </td>
                   <td className="p-5">
-                    <Link href={{pathname:`/order/${order._id}`, query:{redirect: router.pathname}}} passHref>
+                    <Link
+                      href={{
+                        pathname: `/order/${order._id}`,
+                        query: { redirect: router.pathname },
+                      }}
+                      passHref
+                    >
                       <span className="hover:text-[#415505]">جزییات</span>
                     </Link>
                   </td>
@@ -109,7 +128,12 @@ export default function AdminOrderScreen({rowsPerPage= 6}) {
               ))}
             </tbody>
           </table>
-          <TableFooter range={range} slice={slice} setPage={setPage} page={page} />
+          <TableFooter
+            range={range}
+            slice={slice}
+            setPage={setPage}
+            page={page}
+          />
         </div>
       )}
     </AdminLayout>

@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { signIn, useSession } from "next-auth/react";
 
-function login() {
+function Login() {
   const { state, disatch } = useContext(Store);
   const [password, setpassword] = useState("");
   const [error, seterror] = useState(false);
@@ -73,4 +73,4 @@ function login() {
   );
 }
 
-export default login;
+export default Login;

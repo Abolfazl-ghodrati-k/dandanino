@@ -4,6 +4,7 @@ import { Bar } from "react-chartjs-2";
 
 import { TbUsers, TbCurrencyDollar } from "react-icons/tb";
 import { HiOutlineShoppingCart } from "react-icons/hi";
+import DividePrice from "../../components/DividePrice"
 
 import {
   Chart as ChartJS,
@@ -100,7 +101,7 @@ function AdminDashboardScreen() {
                 </div>
                 <p>فروش</p>
                 <p className="text-[.9rem] text-[gray]">
-                  <PersianNumber>{useDividedPrice(summary.ordersPrice)} تومان</PersianNumber>   
+                  <PersianNumber><DividePrice>{summary.ordersPrice}</DividePrice> تومان</PersianNumber>   
                 </p>
               </Link>
             </div>

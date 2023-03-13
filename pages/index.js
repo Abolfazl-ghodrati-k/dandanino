@@ -1,7 +1,7 @@
 import Layout from "../components/Layout";
 import db from "../database/db";
 import Product from "../model/Product";
-import Landing from "./_landing";
+import Landing from "../components/_landing";
 
 export default function Home({products}) {
   console.log(products)
@@ -15,10 +15,10 @@ export default function Home({products}) {
 export async function getServerSideProps() {
   await db.connect();
 
-  const products = await Product.find().lean();
+  const products = await Product?.find().lean();
   return {
     props: {
-      products: products ? products.map(db.convertDocToObj) : null,
+      products: products ? products?.map(db.convertDocToObj) : null,
     },
   };
 }

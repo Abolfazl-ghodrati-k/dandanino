@@ -6,7 +6,7 @@ import CheckoutWizard from "../../components/CheckoutWizard";
 import Layout from "../../components/Layout";
 import { Store } from "../../utils/Store";
 
-function index() {
+function Payment() {
   const [selectedPaymentMethod, setselectedPaymentMethod] = useState("");
 
   const router = useRouter();
@@ -85,4 +85,4 @@ function index() {
   );
 }
 
-export default index;
+export default Payment;

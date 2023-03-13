@@ -6,7 +6,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-function code() {
+function Code() {
   const [loading, setloading] = useState(false);
   const [Code, setCode] = useState("");
   const [trueCode, settrueCode] = useState("");
@@ -103,4 +103,4 @@ function code() {
   );
 }
 
-export default code;
+export default Code;

@@ -13,8 +13,9 @@ import useDividedPrice from "../../hooks/useDividedPrice";
 import Cookies from "js-cookie";
 import { useSession } from "next-auth/react";
 import { BiEditAlt } from "react-icons/bi";
+import DividePrice from "../../components/DividePrice";
 
-function index() {
+function PlaceOrder() {
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
   const { cartItems, shippingAddress, paymentMethod } = cart;
@@ -125,7 +126,7 @@ function index() {
                 <table className="min-w-full">
                   <thead className="border-b">
                     <tr>
-                      <th className="px-5 text-left">محصول</th>
+                      <th className="px-5 text-right">محصول</th>
                       <th className="p-5 text-right">تعداد</th>
                       <th className="p-5 text-right">قیمت</th>
                       <th className="p-5 text-right">مجموع</th>
@@ -154,15 +155,16 @@ function index() {
                           <PersianNumber>{item?.quantity}</PersianNumber>
                         </td>
                         <td className="p-5 text-right text-[.8rem] md:text-[1rem]">
-                          <PersianNumber>
-                            {useDividedPrice(item?.price)} تومان
-                          </PersianNumber>
+                         
+                          <DividePrice>{item?.price}</DividePrice> تومان
+                          
                         </td>
                         <td className="p-5 text-right text-[.8rem] md:text-[1rem]">
-                          <PersianNumber>
-                            {useDividedPrice(item?.quantity * item?.price)}{" "}
+                           <DividePrice>
+                            {item?.quantity * item?.price}
+                           </DividePrice>
                             تومان
-                          </PersianNumber>
+                          
                         </td>
                       </tr>
                     ))}
@@ -184,7 +186,7 @@ function index() {
                       <div>هزینه سفارشات</div>
                       <div>
                         <PersianNumber>
-                          {useDividedPrice(itemsPrice)} تومان
+                          <DividePrice>{itemsPrice}</DividePrice> تومان
                         </PersianNumber>
                       </div>
                     </div>
@@ -194,7 +196,7 @@ function index() {
                       <div>هزینه ارسال</div>
                       <div>
                         <PersianNumber>
-                          {useDividedPrice(shippingPrice)} تومان
+                          <DividePrice>{shippingPrice}</DividePrice> تومان
                         </PersianNumber>
                       </div>
                     </div>
@@ -204,7 +206,7 @@ function index() {
                       <div>مجموع خرید</div>
                       <div>
                         <PersianNumber>
-                          {useDividedPrice(totalPrice)} تومان
+                          <DividePrice>{totalPrice}</DividePrice> تومان
                         </PersianNumber>
                       </div>
                     </div>
@@ -228,4 +230,4 @@ function index() {
   );
 }
 
-export default dynamic(() => Promise.resolve(index), { ssr: false });
+export default dynamic(() => Promise.resolve(PlaceOrder), { ssr: false });

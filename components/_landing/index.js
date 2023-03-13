@@ -1,11 +1,11 @@
 import ReactPlayer from "react-player";
 import React, { useEffect, useState } from "react";
-import Hero from "../../components/Hero";
-import Products from "../products/_products";
-import Options from "../../components/Options";
-import Customers from "../../components/Customers";
-import BetterThanUs from "../../components/BetterThanUs";
-import Comments from "../../components/Comments";
+import Hero from "../Hero";
+import Products from "../Products";
+import Options from "../Options";
+import Customers from "../Customers";
+import BetterThanUs from "../BetterThanUs";
+import Comments from "../Comments";
 import { useRouter } from "next/router";
 
 export default function Landing({ products }) {

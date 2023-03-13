@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Store } from "../../utils/Store";
 import Layout from "../../components/Layout";
-import Card from "./_Cart";
+import Card from "../../components/Cart";
 import Link from "next/link";
 import { CgShoppingBag } from "react-icons/cg";
 import PersianNumber from "react-persian-currency/lib/PersianNumber";
@@ -44,7 +44,7 @@ export default function Cart() {
         });
       }
     } else {
-      router.push('/')
+      router.push("/");
     }
   };
 
@@ -90,11 +90,13 @@ export default function Cart() {
                         firstItem = true;
                       }
                       return (
-                        <Card
-                          cart={cart}
-                          firstItem={firstItem}
-                          lastItem={lastItem}
-                        />
+                        <div key={cart}>
+                          <Card
+                            cart={cart}
+                            firstItem={firstItem}
+                            lastItem={lastItem}
+                          />
+                        </div>
                       );
                     })}
                 </div>

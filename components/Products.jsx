@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import OthProducts from "../../components/OthProducts";
-import SpecialProduct from "../../components/SpecialProduct";
+import OthProducts from "./OthProducts";
+import SpecialProduct from "./SpecialProduct";
 import {GrCloudDownload} from 'react-icons/gr'
 
 function Products({ products }) {

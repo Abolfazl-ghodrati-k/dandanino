@@ -13,6 +13,7 @@ import useDividedPrice from "../../hooks/useDividedPrice";
 import moment from "jalali-moment";
 import { BiArrowBack } from "react-icons/bi";
 import CustomModal from "../../components/CustomModal";
+import DividePrice from "../../components/DividePrice";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -252,15 +253,13 @@ function OrderScreen() {
                             <PersianNumber>{item.quantity}</PersianNumber>
                           </td>
                           <td className="p-5 text-right text-[.8rem] md:text-[1rem]">
-                            <PersianNumber>
-                              {useDividedPrice(item.price)} تومان
-                            </PersianNumber>
+                            <DividePrice>{item.price}</DividePrice> تومان
                           </td>
                           <td className="p-5 text-right text-[.8rem] md:text-[1rem]">
-                            <PersianNumber>
-                              {useDividedPrice(item.quantity * item.price)}{" "}
-                              تومان
-                            </PersianNumber>
+                            <DividePrice>
+                              {item.quantity * item.price}
+                            </DividePrice>
+                            تومان
                           </td>
                         </tr>
                       ))}
@@ -276,9 +275,7 @@ function OrderScreen() {
                       <div className="mb-2 flex justify-between">
                         <div>کالا </div>
                         <div>
-                          <PersianNumber>
-                            {useDividedPrice(itemsPrice)} تومان
-                          </PersianNumber>
+                          <DividePrice>{itemsPrice}</DividePrice> تومان
                         </div>
                       </div>
                     </li>
@@ -286,9 +283,7 @@ function OrderScreen() {
                       <div className="mb-2 flex justify-between">
                         <div>هزینه ارسال</div>
                         <div>
-                          <PersianNumber>
-                            {useDividedPrice(shippingPrice)} تومان
-                          </PersianNumber>
+                          <DividePrice>{shippingPrice}</DividePrice> تومان
                         </div>
                       </div>
                     </li>
@@ -296,9 +291,7 @@ function OrderScreen() {
                       <div className="mb-2 flex justify-between">
                         <div>مجموع خرید</div>
                         <div>
-                          <PersianNumber>
-                            {useDividedPrice(totalPrice)} تومان
-                          </PersianNumber>
+                          <DividePrice>{totalPrice}</DividePrice>تومان
                         </div>
                       </div>
                     </li>

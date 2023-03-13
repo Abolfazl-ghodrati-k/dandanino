@@ -2716,7 +2716,7 @@ next-auth@^4.3.4:
     preact-render-to-string "^5.1.19"
     uuid "^8.3.2"
 
-"next@^12.2.5 || ^13", next@>=10.2.0, next@13.0.5:
+"next@^12.2.5 || ^13", "next@^8.1.1-canary.54 || ^9.0.0 || ^10.0.0-0 || ^11.0.0 || ^12.0.0 || ^13.0.0", next@>=10.2.0, next@13.0.5:
   version "13.0.5"
   resolved "https://registry.npmjs.org/next/-/next-13.0.5.tgz"
   integrity sha512-awpc3DkphyKydwCotcBnuKwh6hMqkT5xdiBK4OatJtOZurDPBYLP62jtM2be/4OunpmwIbsS0Eyv+ZGU97ciEg==
@@ -2740,6 +2740,13 @@ next-auth@^4.3.4:
     "@next/swc-win32-arm64-msvc" "13.0.5"
     "@next/swc-win32-ia32-msvc" "13.0.5"
     "@next/swc-win32-x64-msvc" "13.0.5"
+
+nextjs-cors@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.npmjs.org/nextjs-cors/-/nextjs-cors-2.1.2.tgz"
+  integrity sha512-2yOVivaaf2ILe4f/qY32hnj3oC77VCOsUQJQfhVMGsXE/YMEWUY2zy78sH9FKUCM7eG42/l3pDofIzMD781XGA==
+  dependencies:
+    cors "^2.8.5"
 
 node-fetch@^1.0.1:
   version "1.7.3"

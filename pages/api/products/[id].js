@@ -1,6 +1,5 @@
 import db from "../../../database/db";
-import disconnectMongo from "../../../database/disconn";
-import Product from "../../../models/Product";
+import Product from "../../../model/Product";
 
 const handler = async (req, res) => {
   await db.connect();

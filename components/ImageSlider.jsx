@@ -71,6 +71,7 @@ function ImageSlider({ Images, width, height, ActiveNumb, setActiveNumb }) {
                 setActive(Image);
                 setActiveNumb(index);
               }}
+              key={Image}
               className={`cursor-pointer border rounded-full border-solid w-[20px] h-[20px] ${
                 index == ActiveNumb ? "bg-[black]" : "bg-[#b2b2b2]"
               }`}
