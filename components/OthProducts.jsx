@@ -30,7 +30,7 @@ function OthProducts({ product }) {
           width={220}
           height={30}
           alt={product.slug}
-          src={process.env.NEXT_PUBLIC_BASE_URL + product.image}
+          src={product.image}
         />
       </div>
       <div className="text-[.8rem] w-full px-[3.1rem] md:px-0  md:w-[15rem] text-[black] mt-4 md:mt-8 flex flex-col items-start justify-start">
