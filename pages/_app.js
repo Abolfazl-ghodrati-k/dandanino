@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useState, useEffect } from "react";
 import Loading from "../components/Loading";
 
-axios.defaults.baseURL = "http://localhost:3000";
+axios.defaults.baseURL = "https://dandanino.vercel.app";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
@@ -33,7 +33,6 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 
   return (
     <SessionProvider session={session}>
-      
         <StoreProvider>
           {Component.auth ? (
             <Auth adminOnly={Component.auth.adminOnly}>
