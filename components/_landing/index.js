@@ -21,7 +21,7 @@ export default function Landing({ products }) {
     }
   });
   return (
-    <div className="w-full">
+    <div className="w-full max-w-[1400px]">
       <Hero products={products} />
       <Options />
       <Customers />
