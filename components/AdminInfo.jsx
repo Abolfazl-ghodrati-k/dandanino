@@ -28,13 +28,13 @@ function AdminInfo({ setShowHeader }) {
            transition-all cursor-pointer"
         >
           {session.user.name}
-          {session.user.image ? (
+          {/* {session.user.image ? (
             <Image />
-          ) : (
+          ) : ( */}
             <div className="mt-1">
               <AiOutlineUser size={20} />
             </div>
-          )}
+          {/* )} */}
         </div>
         {ShowMenu && (
           <div className="bg-slate-300 rounded text-[.9rem] mt-1 p-2 py-4">
