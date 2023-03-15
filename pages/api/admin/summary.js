@@ -5,12 +5,12 @@ import User from '../../../model/User';
 import db from '../../../database/db';
 
 const handler = async (req, res) => {
-  await NextCors(req, res, {
-    // Options
-    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-    origin: '*',
-    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
- });
+//   await NextCors(req, res, {
+//     // Options
+//     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+//     origin: '*',
+//     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+//  });
   const session = await getSession({ req });
   console.log(session);
   if (!session || (session && !session.user.email)) {
